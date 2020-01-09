@@ -27,6 +27,8 @@
     background-color: #007aff;
   }
   .mint-swipe-item:nth-child(3){
+
+
     background-color: #000000;
   }
 </style>

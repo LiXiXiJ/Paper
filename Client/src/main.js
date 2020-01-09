@@ -3,6 +3,11 @@
 import Vue from 'vue'
 import App from './App'
 import Router from './router'
+import axios from 'axios'
+//配置axios
+Vue.prototype.$axios = axios;
+axios.defaults.baseURL = '/api';
+
 // 引入mint-UI组件及样式
 import MintUi from 'mint-ui'
 import 'mint-ui/lib/style.css'
