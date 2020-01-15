@@ -38,6 +38,18 @@ For a detailed explanation on how things work, check out the [guide](http://vuej
    
 ##制作Home组件
    1.轮播图区域，使用mint-UI组件，默认轮播图高度为零，需要自己添加样式
+
+##制作六宫格
+   1.下载阿里矢量图标库图标
+   2.设置图标和字体大小
+
+##组件切换动画
+   右进左出
+   
+##制作六宫格链接
+
+##商品咨询页面的制作
+    
   
   
   

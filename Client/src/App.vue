@@ -1,10 +1,13 @@
 <template>
   <div class="app-container">
 <!--    顶部 Header区域-->
-    <mt-header fixed title="网上购物App"></mt-header>
+    <mt-header fixed title="网上购物系统"></mt-header>
 
 <!--    中间路由 <router-view> 区域-->
-    <router-view></router-view>
+    <transition>
+      <router-view></router-view>
+    </transition>
+
 
 <!--    底部 Tabbar 区域-->
     <nav class="mui-bar mui-bar-tab">
@@ -43,5 +46,21 @@ export default {
 <style>
   .app-container{
     padding-top: 40px;
+    /* 隐藏组件切换时下边滚动条 */
+    overflow-x: hidden;
+  }
+  /* 组件切换动画 */
+  .v-enter{
+    opacity: 0;
+    transform: translateX(100%);
+  }
+  .v-leave-to{
+    opacity: 0;
+    transform: translateX(-100%);
+    position: absolute;
+  }
+  .v-enter-active,
+  .v-leave-active{
+    transition: all 0.7s linear;
   }
 </style>
