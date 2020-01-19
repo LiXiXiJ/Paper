@@ -44,7 +44,19 @@
 
 <script>
     export default {
-        name: "shop"
+        name: "talk",
+      data() {
+        return {
+        };
+      },
+      created() {
+          this.$axios.get('/home/talk')
+            .then( res => {
+              console.log(res)
+            })
+      },
+      methods: {
+      }
     }
 </script>
 
