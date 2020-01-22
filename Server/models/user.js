@@ -3,11 +3,9 @@
  *  用户信息数据库
  */
 
-const db = require('../util/db');
-
 const mongoose = require('mongoose');
 
-const userSchema = mongoose.Schema({
+const userSchema = new mongoose.Schema({
     nickname:{
         type:String,
         required:true
@@ -22,5 +20,5 @@ const userSchema = mongoose.Schema({
     }
 });
 
-module.exports = db.model('User',userSchema);
+module.exports = mongoose.model('User',userSchema);
 

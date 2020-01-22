@@ -6,7 +6,7 @@ import Member from '../components/Tabbar/Member'
 import Shopcar from '../components/Tabbar/Shopcar'
 import Mine from '../components/Tabbar/Mine'
 //引入 lgge 组件
-import Talk from '../components/lgge/talk'
+import ShopList from '../components/lgge/shoplist'
 import Share from '../components/lgge/share'
 import Buy from '../components/lgge/buy'
 import Comment from '../components/lgge/comment'
@@ -26,12 +26,16 @@ Vue.use(Router);
 
 export default new Router({
   routes:[
+    // 路由重定向，让程序一进去就展示对应的组件，
+    //    这里的 redirect 和 node 中的 redirect 完全是两码事
+    { path:'/',redirect: '/home'},
+
     { path:'/home',component:Home },
     { path:'/member',component:Member },
     { path:'/shopcar',component:Shopcar },
     { path:'/mine',component:Mine },
 
-    { path:'/home/talk',component:Talk },
+    { path:'/home/shoplist',component:ShopList },
     { path:'/home/share',component:Share },
     { path:'/home/buy',component:Buy },
     { path:'/home/comment',component:Comment },

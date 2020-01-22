@@ -52,7 +52,14 @@ For a detailed explanation on how things work, check out the [guide](http://vuej
 
 ##我的页面制作
    mui组件
-   
+
+##尝试在手机上进行项目的预览和测试
+   1.保证自己的手机可以正常运行
+   2.保证手机和开发项目的电脑处于同一个WiFi环境中，手机可以访问到电脑的IP
+   3.打开自己的项目中 package.json 文件，添加一个 --host 指令
+      把当前电脑 的WiFi IP地址，设置为 --host 的指令值
+    查看自己电脑所处WiFi的IP，cmd 运行 ipconfig   - - - 查看无线网的IP
+      --host 192.168.0.116
     
   
   

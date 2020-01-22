@@ -3,18 +3,21 @@
 <!--    轮播图区域 -->
 <!--    auto 毫秒值 -->
     <mt-swipe :auto="3000">
-      <mt-swipe-item> <img class="lunboimg" src="../../lib/img/lunbo/dog.jpg"> </mt-swipe-item>
-      <mt-swipe-item> <img class="lunboimg" src="../../lib/img/lunbo/run.jpg"> </mt-swipe-item>
-      <mt-swipe-item> <img class="lunboimg" src="../../lib/img/lunbo/year.jpg"> </mt-swipe-item>
-      <mt-swipe-item> <img class="lunboimg" src="../../lib/img/lunbo/clear.jpg"> </mt-swipe-item>
-      <mt-swipe-item> <img class="lunboimg" src="../../lib/img/lunbo/phone.jpg"> </mt-swipe-item>
+      <mt-swipe-item v-for="item in lunbotuList" :key="item.id">
+        <img :src="item.img_url">
+      </mt-swipe-item>
+<!--      <mt-swipe-item> <img class="lunboimg" src="../../lib/img/lunbo/dog.jpg"></mt-swipe-item>-->
+<!--      <mt-swipe-item> <img class="lunboimg" src="../../lib/img/lunbo/run.jpg"> </mt-swipe-item>-->
+<!--      <mt-swipe-item> <img class="lunboimg" src="../../lib/img/lunbo/year.jpg"> </mt-swipe-item>-->
+<!--      <mt-swipe-item> <img class="lunboimg" src="../../lib/img/lunbo/clear.jpg"> </mt-swipe-item>-->
+<!--      <mt-swipe-item> <img class="lunboimg" src="../../lib/img/lunbo/phone.jpg"> </mt-swipe-item>-->
     </mt-swipe>
 <!--     六宫格区域 -->
     <ul class="mui-table-view mui-grid-view mui-grid-9">
       <li class="mui-table-view-cell mui-media mui-col-xs-4 mui-col-sm-3">
-        <router-link to="/home/talk">
+        <router-link to="/home/shoplist">
         <img src="../../lib/img/lgge/1.png">
-        <div class="mui-media-body">讨论</div>
+        <div class="mui-media-body">商品列表</div>
         </router-link></li>
       <li class="mui-table-view-cell mui-media mui-col-xs-4 mui-col-sm-3">
         <router-link to="/home/share">
@@ -47,7 +50,24 @@
 
 <script>
     export default {
-        name: "Home"
+        name: "Home",
+      data(){
+          return{
+            lunbotuList:[] // 获取轮播图
+          }
+      },
+      created(){
+          this.getlunbo()
+      },
+      methods:{
+          async getlunbo(){
+            const res = await this.$axios.get('/getlunbotu',this.model);
+            // console.log(res);
+            if(res.status === 200 ){
+              this.lunbotuList = res.data
+             }
+          }
+      }
     }
 </script>
 
@@ -56,9 +76,9 @@
   .mint-swipe{
     height: 150px;
   }
-  .lunboimg{
-    height: 150px;
+  img{
     width: 100%;
+    height: 150px;
   }
   /* 设置六宫格样式 */
   body{

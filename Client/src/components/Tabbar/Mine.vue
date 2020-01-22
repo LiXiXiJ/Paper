@@ -18,7 +18,7 @@
         <router-link to="/mine/news" class="mui-navigate-right">新消息通知</router-link>
       </li>
       <li class="mui-table-view-cell">
-        <router-link to="/mine/privacy" class="mui-navigate-right">隐私</router-link>
+        <router-link to="/mine/privacy" class="mui-navigate-right">隐私与安全</router-link>
       </li>
       <li class="mui-table-view-cell">
         <router-link to="/mine/current" class="mui-navigate-right">通用</router-link>
@@ -47,7 +47,7 @@
 <style>
   #fir{
     margin-top: 0;
-    height: 75px;
+    height: 64px;
   }
   #p{
     margin-top: 10px;

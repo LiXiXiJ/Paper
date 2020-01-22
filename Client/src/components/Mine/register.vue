@@ -28,20 +28,6 @@
 </template>
 
 <script>
-  // import 'jquery'
-  //   $('#register_form').on('submit',function (e) {
-  //     e.preventDefault();
-  //     var formDate = $(this).serialize();
-  //     $.ajax({
-  //       url:'/register',
-  //       type:'post',
-  //       data:formDate,
-  //       dataType:'json',
-  //       success:function (data) {
-  //         console.log(data)
-  //       }
-  //     })
-  //   })
   export default {
     mounted() {
       this.$axios.post('/register').then(res => {
@@ -52,9 +38,6 @@
 </script>
 
 <style>
-  .area {
-    margin: 20px auto 0px auto;
-  }
   .mui-input-group:first-child {
     margin-top: 20px;
   }
@@ -79,8 +62,8 @@
   body {
     width: 100%;
     height: 100%;
-    margin: 0px;
-    padding: 0px;
+    margin: 0;
+    padding: 0;
   }
   .mui-content{height: 100%;}
   .zhu{
