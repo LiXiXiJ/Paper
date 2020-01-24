@@ -6,12 +6,12 @@
 
 const express = require('express');
 
-const user = require('../models/lunbotu');
+const lunbotu= require('../models/lunbotu');
 
 const Lunbotu = express.Router();
 
 Lunbotu.get('/getlunbotu',async(req,res) =>{
-  const model = await user.find(req.body);
+  const model = await lunbotu.find(req.body);
   res.send(model)
 });
 

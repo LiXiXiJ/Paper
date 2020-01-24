@@ -1,6 +1,6 @@
 /**
  * lunbotu.js
- *   轮播图数据库，存放轮播图
+ *   轮播图数据表结构文件
  * @type {createApplication}
  */
 

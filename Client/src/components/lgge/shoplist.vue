@@ -1,7 +1,7 @@
 <template>
     <div class="goods-list">
       <div class="goods-item">
-      <img src="../../lib/img/lunbo/run.jpg">
+      <img src="../../lib/img/lgge/1.png">
       <h1 class="title">跑步机哒哒哒哒哒哒</h1>
       <div class="info">
         <p class="price">
@@ -15,7 +15,7 @@
       </div>
       </div>
         <div class="goods-item">
-          <img src="../../lib/img/lunbo/run.jpg">
+          <img src="../../lib/img/lgge/2.png">
           <h1 class="title">跑步机哒哒哒哒哒哒哒哒哒哒哒</h1>
           <div class="info">
             <p class="price">
@@ -29,7 +29,7 @@
           </div>
     </div>
       <div class="goods-item">
-        <img src="../../lib/img/lunbo/run.jpg">
+        <img src="../../lib/img/lgge/3.png">
         <h1 class="title">跑步机哒哒哒哒哒哒哒哒哒哒哒</h1>
         <div class="info">
           <p class="price">

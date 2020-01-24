@@ -8,9 +8,8 @@ const express = require('express');
 const bodyParser = require('body-parser');
 
 //引入路由
-const Login = require('./routes/Login');
-const Register = require('./routes/Register');
 const Lunbotu = require('./routes/Lunbotu');
+const NewsList = require('./routes/NewsList');
 
 const app = express();
 
@@ -18,13 +17,14 @@ const app = express();
 app.use(bodyParser.urlencoded({ extended:false }));
 app.use(bodyParser.json());
 
+app.use(express.json());
+
 // 引入数据库连接文件
 require('./util/db')(app);
 
 // 路由挂载到 APP 服务中
-app.use(Login);
-app.use(Register);
 app.use(Lunbotu);
+app.use(NewsList);
 
 app.listen(3000,() => {
     console.log('server is running')

@@ -40,6 +40,7 @@ export default {
 <style>
   .app-container{
     padding-top: 40px;
+    padding-bottom: 50px;
     /* 隐藏组件切换时下边滚动条 */
     overflow-x: hidden;
   }

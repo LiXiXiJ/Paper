@@ -1,14 +1,16 @@
 import Vue from 'vue'
 import Router from 'vue-router'
+
 // 引入Tabbar 组件
 import Home from '../components/Tabbar/Home'
 import Member from '../components/Tabbar/Member'
 import Shopcar from '../components/Tabbar/Shopcar'
 import Mine from '../components/Tabbar/Mine'
+
 //引入 lgge 组件
 import ShopList from '../components/lgge/shoplist'
 import Share from '../components/lgge/share'
-import Buy from '../components/lgge/buy'
+import NewsList from '../components/lgge/newslist'
 import Comment from '../components/lgge/comment'
 import Vip from '../components/lgge/vip'
 import Touch from '../components/lgge/touch'
@@ -37,7 +39,7 @@ export default new Router({
 
     { path:'/home/shoplist',component:ShopList },
     { path:'/home/share',component:Share },
-    { path:'/home/buy',component:Buy },
+    { path:'/home/newslist',component:NewsList },
     { path:'/home/comment',component:Comment },
     { path:'/home/vip',component:Vip },
     { path:'/home/touch',component:Touch },

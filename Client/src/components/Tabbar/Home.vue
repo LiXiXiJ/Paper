@@ -6,11 +6,6 @@
       <mt-swipe-item v-for="item in lunbotuList" :key="item.id">
         <img :src="item.img_url">
       </mt-swipe-item>
-<!--      <mt-swipe-item> <img class="lunboimg" src="../../lib/img/lunbo/dog.jpg"></mt-swipe-item>-->
-<!--      <mt-swipe-item> <img class="lunboimg" src="../../lib/img/lunbo/run.jpg"> </mt-swipe-item>-->
-<!--      <mt-swipe-item> <img class="lunboimg" src="../../lib/img/lunbo/year.jpg"> </mt-swipe-item>-->
-<!--      <mt-swipe-item> <img class="lunboimg" src="../../lib/img/lunbo/clear.jpg"> </mt-swipe-item>-->
-<!--      <mt-swipe-item> <img class="lunboimg" src="../../lib/img/lunbo/phone.jpg"> </mt-swipe-item>-->
     </mt-swipe>
 <!--     六宫格区域 -->
     <ul class="mui-table-view mui-grid-view mui-grid-9">
@@ -22,12 +17,12 @@
       <li class="mui-table-view-cell mui-media mui-col-xs-4 mui-col-sm-3">
         <router-link to="/home/share">
         <img src="../../lib/img/lgge/2.png">
-        <div class="mui-media-body">分享</div>
+        <div class="mui-media-body">图片分享</div>
         </router-link></li>
       <li class="mui-table-view-cell mui-media mui-col-xs-4 mui-col-sm-3">
-        <router-link to="/home/buy">
+        <router-link to="/home/newslist">
         <img src="../../lib/img/lgge/3.png">
-        <div class="mui-media-body">购买</div>
+        <div class="mui-media-body">新闻资讯</div>
         </router-link></li>
       <li class="mui-table-view-cell mui-media mui-col-xs-4 mui-col-sm-3">
         <router-link to="/home/comment">

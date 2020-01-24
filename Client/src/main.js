@@ -15,6 +15,7 @@ import 'mint-ui/lib/style.css'
 // 导入mui组件使用到的样式
 import './lib/mui/css/mui.min.css'
 import './lib/mui/css/icons-extra.css'
+import './lib/mui/js/mui'
 
 Vue.config.productionTip = false;
 
