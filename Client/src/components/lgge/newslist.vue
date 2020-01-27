@@ -22,12 +22,11 @@
 </template>
 
 <script>
-  // 引入评论子组件
   import ChildComment from '../publicCom/childComment'
 
     export default {
       name: "newslist",
-      components: {ChildComment},
+      components:{ChildComment},
       data(){
           return {
             newslists:[]

@@ -1,24 +1,16 @@
 <template>
     <div class="comment">
-      <h1 class="h1">评论内容</h1>
+      <h1 class="h1">评论</h1>
       <hr>
       <textarea placeholder="请输入评论内容（最多120字）" maxlength="120"></textarea>
       <mt-button type="primary" size="large">发表评论</mt-button>
       <div class="cmtList">
-        <div class="cmtItem">
+        <div class="cmtItem" v-for="item in childcomment" :key="item.id">
           <div class="cmtTitle">
-            第1楼&nbsp;&nbsp;用户：匿名用户&nbsp;&nbsp;发表时间：2020-01-12 12:12：12
+            第{{item.id}}楼&nbsp;&nbsp;用户：{{item.user}}&nbsp;&nbsp;发表时间：{{item.ad_time}}
           </div>
           <div class="cmtBody">
-            西湖和日党务
-          </div>
-        </div>
-        <div class="cmtItem">
-          <div class="cmtTitle">
-            第2楼&nbsp;&nbsp;用户：匿名用户&nbsp;&nbsp;发表时间：2020-01-12 12:12：12
-          </div>
-          <div class="cmtBody">
-            西湖和日党务
+            {{item.ad_content}}
           </div>
         </div>
       </div>
@@ -28,7 +20,24 @@
 
 <script>
     export default {
-        name: "childComment"
+        name: "childComment",
+      data(){
+          return{
+            childcomment:[]
+          }
+      },
+      created(){
+          this.getcom()
+      },
+      methods:{
+          async getcom(){
+            const res = await this.$axios.get('/getchildcom',this.model);
+            // console.log(res)
+            if( res.status === 200 ){
+              this.childcomment = res.data
+            }
+          }
+      }
     }
 </script>
 

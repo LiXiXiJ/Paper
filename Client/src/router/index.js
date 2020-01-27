@@ -9,11 +9,14 @@ import Mine from '../components/Tabbar/Mine'
 
 //引入 lgge 组件
 import ShopList from '../components/lgge/shoplist'
-import Share from '../components/lgge/share'
+import PhotoList from '../components/lgge/photolist'
 import NewsList from '../components/lgge/newslist'
 import Comment from '../components/lgge/comment'
 import Vip from '../components/lgge/vip'
 import Touch from '../components/lgge/touch'
+
+// 引入六宫格中具体内容组件
+import PhotoInfo from '../components/lgge-info/photoinfo'
 
 //引入Mine组件
 import register from '../components/Mine/register'
@@ -38,11 +41,14 @@ export default new Router({
     { path:'/mine',component:Mine },
 
     { path:'/home/shoplist',component:ShopList },
-    { path:'/home/share',component:Share },
+    { path:'/home/photolist',component:PhotoList },
     { path:'/home/newslist',component:NewsList },
     { path:'/home/comment',component:Comment },
     { path:'/home/vip',component:Vip },
     { path:'/home/touch',component:Touch },
+
+
+    { path:'/home/photoinfo/:id',component:PhotoInfo },
 
     { path:'/mine/register',component:register },
     { path:'/mine/login',component:login },

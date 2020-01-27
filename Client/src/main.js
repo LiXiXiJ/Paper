@@ -13,15 +13,21 @@ import MintUi from 'mint-ui'
 import 'mint-ui/lib/style.css'
 
 // 导入mui组件使用到的样式
+import './lib/mui/js/mui'
 import './lib/mui/css/mui.min.css'
 import './lib/mui/css/icons-extra.css'
-import './lib/mui/js/mui'
+
+//导入vue-photo-preview
+import preview from 'vue-photo-preview'
+import 'vue-photo-preview/dist/vue-photo-preview'
+import 'vue-photo-preview/dist/skin.css'
 
 Vue.config.productionTip = false;
 
 // 引用mintUI组件
 Vue.use(MintUi);
-
+// 引用vue-photo-preview
+Vue.use(preview);
 
 /* eslint-disable no-new */
 new Vue({

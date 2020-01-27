@@ -15,7 +15,7 @@
         <div class="mui-media-body">商品列表</div>
         </router-link></li>
       <li class="mui-table-view-cell mui-media mui-col-xs-4 mui-col-sm-3">
-        <router-link to="/home/share">
+        <router-link to="/home/photolist">
         <img src="../../lib/img/lgge/2.png">
         <div class="mui-media-body">图片分享</div>
         </router-link></li>

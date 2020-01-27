@@ -6,7 +6,7 @@
 
 const express = require('express');
 
-const newslist = require('../models/newslist');
+const newslist = require('../../models/lgge/newslist');
 
 const NewsList = express.Router();
 

@@ -3,7 +3,7 @@
     <ul class="mui-table-view mui-table-view-chevron" id="fir">
       <li class="mui-table-view-cell mui-media">
         <router-link class="mui-navigate-right" to="/mine/login">
-          <img class="mui-media-object mui-pull-left head-img" id="head-img" src="../../lib/img/head/shuijiao.jpg">
+          <img class="mui-media-object mui-pull-left head-img" id="head-img" src="../../lib/img/lgge/1.png">
             <p class='mui-ellipsis' id="p">账号:hellomui</p>
         </router-link>
       </li>
