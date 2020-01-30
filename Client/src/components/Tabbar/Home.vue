@@ -57,7 +57,7 @@
       methods:{
           async getlunbo(){
             const res = await this.$axios.get('/getlunbotu',this.model);
-            // console.log(res);
+            // console.log(res)
             if(res.status === 200 ){
               this.lunbotuList = res.data
              }

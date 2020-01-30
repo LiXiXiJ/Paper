@@ -15,8 +15,9 @@ import Comment from '../components/lgge/comment'
 import Vip from '../components/lgge/vip'
 import Touch from '../components/lgge/touch'
 
-// 引入六宫格中具体内容组件
+// 引入 lgge-info 组件
 import PhotoInfo from '../components/lgge-info/photoinfo'
+import ShopInfo from '../components/lgge-info/shopinfo'
 
 //引入Mine组件
 import register from '../components/Mine/register'
@@ -49,6 +50,7 @@ export default new Router({
 
 
     { path:'/home/photoinfo/:id',component:PhotoInfo },
+    { path:'/home/shopinfo/:id',component:ShopInfo },
 
     { path:'/mine/register',component:register },
     { path:'/mine/login',component:login },

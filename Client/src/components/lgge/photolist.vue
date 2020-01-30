@@ -115,7 +115,9 @@
     box-shadow: 0 0 6px #999;
     position: relative;
   }
-  img{
+  .photo-list img{
+    /*min-height解决刚进去图片未请求到时页面错乱的问题*/
+    min-height: 436px;
     width: 100%;
     height: 95%;
     text-align: center;

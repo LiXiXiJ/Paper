@@ -5,7 +5,7 @@
         <li class="mui-table-view-cell mui-collapse" id="li" v-for="item in newslists" :key="item.id">
           <img class="mui-media-object mui-pull-left" :src="item.img_url">
           <p class="childBox">
-            <span>{{ item.add_time }}</span>
+            <span>{{ item.add_time}}</span>
             <span>{{ item.click }}次阅读</span>
           </p>
           <a class="mui-navigate-right" href="#" id="title1">{{ item.title }}</a>

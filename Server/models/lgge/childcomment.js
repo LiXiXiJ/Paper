@@ -3,23 +3,15 @@
  *  评论子组件数据表结构文件
  * @type {Mongoose}
  */
-
 const mongoose = require('mongoose');
 
 const childCommentSchema = new mongoose.Schema({
-    id:{
-        type:Number,
-        required:true
+    add_time:{
+        type:Date,
+        required:true,
+        default:Date.now
     },
-    user:{
-        type: String,
-        required: true
-    },
-    ad_time:{
-        type:String,
-        required:true
-    },
-    ad_content:{
+    add_comment:{
         type:String,
         required:true
     }

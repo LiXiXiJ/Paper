@@ -8,6 +8,12 @@ import axios from 'axios'
 Vue.prototype.$axios = axios;
 axios.defaults.baseURL = '/api';
 
+//定义全局过滤器（时间） moment插件
+import moment from 'moment'
+Vue.filter('dataFilter',function (dataStr,patten = 'YYYY-MM-DD HH:mm:ss') {
+  return moment(dataStr).format(patten)
+});
+
 // 引入mint-UI组件及样式
 import MintUi from 'mint-ui'
 import 'mint-ui/lib/style.css'

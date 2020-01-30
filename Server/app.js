@@ -15,6 +15,8 @@ const PhotoListCate = require('./routes/lgge/PhotoListCate');
 const PhotoList = require('./routes/lgge/PhotoList');
 const PhotoInfo = require('./routes/lgge/PhotoInfo');
 const PhotoImg = require('./routes/lgge/PhotoImg');
+const ShopList = require('./routes/lgge/ShopList');
+const ShopInfo = require('./routes/lgge/ShopInfo');
 
 const app = express();
 
@@ -35,6 +37,8 @@ app.use(PhotoListCate);
 app.use(PhotoList);
 app.use(PhotoInfo);
 app.use(PhotoImg);
+app.use(ShopList);
+app.use(ShopInfo);
 
 app.listen(3000,() => {
     console.log('server is running')
