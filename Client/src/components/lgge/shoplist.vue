@@ -5,11 +5,11 @@
       <h1 class="title">{{ item.title }}</h1>
       <div class="shops-info">
         <p class="price">
-          <span class="now">{{ item.new_price }}</span>
-          <span class="old">{{ item.old_price }}</span>
+          <span class="now">￥{{ item.new_price }}</span>
+          <span class="old">￥{{ item.old_price }}</span>
         </p>
         <p class="sell">
-          <span>热卖中</span>
+          <span><img id="hotsell" src="../../lib/img/other/hotsell.png">热卖中</span>
           <span>库存{{ item.last_item }}件</span>
         </p>
       </div>
@@ -99,5 +99,9 @@
     margin: 0;
     display: flex;
     justify-content: space-between;
+  }
+  #hotsell{
+    width: 15px;
+    height: 15px;
   }
 </style>
