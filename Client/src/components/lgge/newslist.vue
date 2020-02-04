@@ -22,7 +22,7 @@
 </template>
 
 <script>
-  import ChildComment from '../publicCom/childComment'
+  import ChildComment from '../lgge/publicCom/childComment'
 
     export default {
       name: "newslist",

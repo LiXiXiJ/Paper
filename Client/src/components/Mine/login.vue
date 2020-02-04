@@ -1,9 +1,5 @@
 <template>
   <div>
-    <header class="mui-bar mui-bar-nav">
-      <router-link class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left" id="back" to="/mine">返回</router-link>
-      <h1 class="mui-title">登录</h1>
-    </header>
     <div class="mui-content">
       <form id='login-form' class="mui-input-group">
         <div class="mui-input-row">
@@ -83,11 +79,6 @@
   }
   .mui-input-clear.mui-input{
     font-size: 13px;
-  }
-  #back{
-    font-size: 13px;
-    height: 44px;
-    margin-top: 7px;
   }
   #none{
     font-size: 13px;

@@ -3,8 +3,8 @@ import Router from 'vue-router'
 
 // 引入Tabbar 组件
 import Home from '../components/Tabbar/Home'
-import Member from '../components/Tabbar/Member'
-import Shopcar from '../components/Tabbar/Shopcar'
+import Search from '../components/Tabbar/Search'
+import ShopCar from '../components/Tabbar/Shopcar'
 import Mine from '../components/Tabbar/Mine'
 
 //引入 lgge 组件
@@ -16,8 +16,10 @@ import Vip from '../components/lgge/vip'
 import Touch from '../components/lgge/touch'
 
 // 引入 lgge-info 组件
-import PhotoInfo from '../components/lgge-info/photoinfo'
-import ShopInfo from '../components/lgge-info/shopinfo'
+import PhotoInfo from '../components/lgge/lgge-info/photoinfo'
+import ShopInfo from '../components/lgge/lgge-info/shopinfo'
+import ShopDescription from '../components/lgge/lgge-info/shopdescription'
+import ShopComment from '../components/lgge/lgge-info/shopcomment'
 
 //引入Mine组件
 import register from '../components/Mine/register'
@@ -37,8 +39,8 @@ export default new Router({
     { path:'/',redirect: '/home'},
 
     { path:'/home',component:Home },
-    { path:'/member',component:Member },
-    { path:'/shopcar',component:Shopcar },
+    { path:'/search',component:Search },
+    { path:'/shopcar',component:ShopCar },
     { path:'/mine',component:Mine },
 
     { path:'/home/shoplist',component:ShopList },
@@ -51,6 +53,8 @@ export default new Router({
 
     { path:'/home/photoinfo/:id',component:PhotoInfo },
     { path:'/home/shopinfo/:id',component:ShopInfo },
+    { path:'/home/shopdescription/:id',component:ShopDescription},
+    { path:'/home/shopcomment',component:ShopComment },
 
     { path:'/mine/register',component:register },
     { path:'/mine/login',component:login },

@@ -1,9 +1,5 @@
 <template>
   <div>
-    <header class="mui-bar mui-bar-nav">
-      <router-link class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left" id="back" to="/mine">返回</router-link>
-      <h1 class="mui-title">隐私</h1>
-    </header>
     <div class="mui-page-content">
       <div class="mui-scroll-wrapper">
         <div class="mui-scroll">
@@ -67,10 +63,5 @@
     height: 30px;
     float: right;
     margin-top: 5px;
-  }
-  #back{
-    font-size: 13px;
-    height: 44px;
-    margin-top: 7px;
   }
 </style>

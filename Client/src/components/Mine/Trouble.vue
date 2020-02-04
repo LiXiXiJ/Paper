@@ -1,10 +1,6 @@
 <template>
   <div>
-    <header class="mui-bar mui-bar-nav">
-      <router-link class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left" id="back" to="/mine">返回</router-link>
       <button id="submit" class="mui-btn mui-btn-blue mui-btn-link mui-pull-right">发送</button>
-      <h1 class="mui-title">问题反馈</h1>
-    </header>
     <div class="mui-content">
       <div class="mui-content-padded">
         <div class="mui-inline">问题和意见</div>
@@ -54,10 +50,5 @@
   .mui-input-clear.question,
   .mui-input-clear.contact{
     font-size: 13px;
-  }
-  #back{
-    font-size: 13px;
-    height: 44px;
-    margin-top: 7px;
   }
 </style>

@@ -1,9 +1,5 @@
 <template>
   <div>
-    <header class="mui-bar mui-bar-nav">
-      <router-link class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left" id="back" to="/mine">返回</router-link>
-      <h1 class="mui-title">关于购物系统</h1>
-    </header>
     <div class="mui-scroll" id="abo">
       <ul class="mui-table-view">
         <li class="mui-table-view-cell">
@@ -40,10 +36,5 @@
   }
   #abo{
     margin-top: 20px;
-  }
-  #back{
-    font-size: 13px;
-    height: 44px;
-    margin-top: 7px;
   }
 </style>

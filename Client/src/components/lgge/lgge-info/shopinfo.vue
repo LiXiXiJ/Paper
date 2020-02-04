@@ -28,9 +28,13 @@
             <p class="price">
               市场价：<del>￥{{ shopInfo.old_price }}</del>&nbsp;&nbsp;销售价：<span class="nowPrice">￥{{ shopInfo.new_price }}</span>
             </p>
-            <p>购买数量：<Numbox></Numbox> </p>
+            <p>购买数量：<Numbox @getCount="getNumBoxCount"></Numbox> </p>
             <p>
               <mt-button type="danger" size="small" @click="addToShopCar">加入购物车</mt-button>
+<!--              分析：如何实现加入购物车时拿到选择的数量
+                          1.按钮属于shopinfo 组件，数字框属于numbox组件
+                           2.涉及到父子组件的嵌套，无法直接在shopinfo页面中获得数量值
+                            3.父子组件传值，父向子传递方法，子调用这个方法，同时把数据当作参数传递给这个方法-->
               <mt-button type="primary" size="small">立即购买</mt-button>
             </p>
           </div>
@@ -46,16 +50,17 @@
             <p>库存情况：{{ shopInfo.last_item }}</p>
           </div>
         </div>
+<!--        商品购买区域-->
         <div class="mui-card-footer">
-          <mt-button type="primary" size="large">图文介绍</mt-button>
-          <mt-button type="danger" size="large">商品评价</mt-button>
+          <mt-button type="primary" size="large" @click="goToShopDescription(id)">图文介绍</mt-button>
+          <mt-button type="danger" size="large" @click="goToShopComment">商品评价</mt-button>
         </div>
       </div>
     </div>
 </template>
 
 <script>
-  import Numbox from '../../components/publicCom/shopinfo-numbox'
+  import Numbox from '../publicCom/shopinfo-numbox'
 
     export default {
         name: "shopinfo",
@@ -65,7 +70,8 @@
             id:this.$route.params.id,
             shopInfo:{},
             shopInfoImg:[],
-            ballFlag:false //控制小球显示隐藏
+            ballFlag:false, // 控制小球显示隐藏
+            numBoxCount:0 // 商品数量，默认为0
           }
       },
       created(){
@@ -87,9 +93,28 @@
             this.shopInfoImg = res.data
            }
          },
+
         addToShopCar(){ // 添加至购物车
-            this.ballFlag = !this.ballFlag
+            this.ballFlag = !this.ballFlag;
+
+          // {id:商品id,count:要购买的数量,price:商品价格,selected:false}
+          const selectShop = {  // 保存到store中 shopCar 数组中的信息对象
+            id:this.id,
+            count:this.numBoxCount,
+            price:this.shopInfo.new_price,
+            selected:true
+          };
+          // 调用 store 中的 mutations 来保存将商品加入购物车
+          this.$store.commit("selectShopAddToShopCar",selectShop)
         },
+
+        goToShopDescription(){  // 编程式导航跳转至 shopdescription 组件
+          this.$router.push('/home/shopdescription/'+this.id)
+        },
+        goToShopComment(){
+          this.$router.push('/home/shopcomment')
+        },
+
         // 钩子函数实现半场动画
         beforeEnter(el){
             el.style.transform = "translate(0,0)"
@@ -115,10 +140,16 @@
             // console.log(X,Y)
             el.style.transform = `translate(${X}px,${Y}px)`;
             //  cubic-bezier(.54,-0.27,1,.67) 贝塞尔曲线
-            el.style.transition = "all 1s cubic-bezier(.05,.66,1,.45)";
+            el.style.transition = "all 0.6s cubic-bezier(.05,.66,1,.45)";
         },
         afterEnter(el){
             this.ballFlag = false
+        },
+
+        getNumBoxCount(count){
+            // 当子组件把选中的数量传递给父组件时，把选中的值保存到 data 上
+            this.numBoxCount = count
+          console.log('父组件拿到数据'+this.numBoxCount)
         }
        }
     }

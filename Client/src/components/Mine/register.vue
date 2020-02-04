@@ -1,9 +1,5 @@
 <template>
   <div>
-    <header class="mui-bar mui-bar-nav">
-      <router-link class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left" id="back" to="/mine">返回</router-link>
-      <h1 class="mui-title">注册</h1>
-    </header>
     <div class="mui-content">
       <form class="mui-input-group" id="register_form" action="/register" method="post">
         <div class="mui-input-row">
@@ -68,10 +64,5 @@
   .mui-content{height: 100%;}
   .zhu{
     text-align: center;
-  }
-  #back{
-    font-size: 13px;
-    height: 44px;
-    margin-top: 7px;
   }
 </style>

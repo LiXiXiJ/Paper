@@ -1,7 +1,11 @@
 <template>
   <div class="app-container">
 <!--    顶部 Header区域-->
-    <mt-header fixed title="网上购物系统"></mt-header>
+    <mt-header fixed title="网上购物系统">
+      <span slot="left" @click="goBack" v-show="flag">
+        <mt-button icon="back">返回</mt-button>
+      </span>
+    </mt-header>
 
 <!--    中间路由 <router-view> 区域-->
     <transition>
@@ -15,12 +19,13 @@
         <span class="mui-icon mui-icon-home"></span>
         <span class="mui-tab-label">首页</span>
       </router-link>
-      <router-link class="mui-tab-item-my" to="/member">
-        <span class="mui-icon mui-icon-extra mui-icon-extra-peoples"></span>
-        <span class="mui-tab-label">会员</span>
+      <router-link class="mui-tab-item-my" to="/search">
+        <span class="mui-icon  mui-icon-search"></span>
+        <span class="mui-tab-label">搜索</span>
       </router-link>
       <router-link class="mui-tab-item-my" to="/shopcar">
-        <span class="mui-icon mui-icon-extra mui-icon-extra-cart"><span class="mui-badge" id="shopCar">0</span></span>
+        <span class="mui-icon mui-icon-extra mui-icon-extra-cart">
+          <span class="mui-badge" id="shopCar">{{ $store.getters.getAllSelectShopCount }}</span></span>
         <span class="mui-tab-label">购物车</span>
       </router-link>
       <router-link class="mui-tab-item-my" to="/mine">
@@ -34,6 +39,29 @@
 <script>
 export default {
   name: 'App',
+  data(){
+    return {
+      flag:false
+    }
+  },
+  created(){
+    // 刚进入页面判断是否在首页
+    this.flag = this.$router.path === "/home" ? false : true
+  },
+  methods:{
+    goBack(){
+      this.$router.go(-1)
+    }
+  },
+  watch:{
+    '$route.path': function (newValue) {
+      if (newValue === '/home') {
+        this.flag = false
+      } else {
+        this.flag = true
+      }
+    }
+  }
 }
 </script>
 

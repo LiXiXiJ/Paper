@@ -47,44 +47,12 @@
         },
 
         async getPhotoListByCateId(cateid) { // 获取图片列表
-          if (cateid === 0) {
-              const res = await this.$axios.get('/getphotolist/0', this.model);
-              // console.log(res)
-              this.list = res.data
-            } else if (cateid === 1) {
-              const res = await this.$axios.get('/getphotolist/1', this.model);
-              // console.log(res)
-              this.list = res.data
-            } else if (cateid === 2) {
-              const res = await this.$axios.get('/getphotolist/2', this.model);
-              // console.log(res)
-              this.list = res.data
-            } else if (cateid === 3) {
-              const res = await this.$axios.get('/getphotolist/3', this.model);
-              // console.log(res)
-              this.list = res.data
-            } else if (cateid === 4) {
-              const res = await this.$axios.get('/getphotolist/4', this.model);
-              // console.log(res)
-              this.list = res.data
-            } else if (cateid === 5) {
-              const res = await this.$axios.get('/getphotolist/5', this.model);
-              // console.log(res)
-              this.list = res.data
-            } else if (cateid === 6) {
-              const res = await this.$axios.get('/getphotolist/6', this.model);
-              // console.log(res)
-              this.list = res.data
-            } else if (cateid === 7) {
-              const res = await this.$axios.get('/getphotolist/7', this.model);
-              // console.log(res)
-              this.list = res.data
-            } else if (cateid === 8) {
-              const res = await this.$axios.get('/getphotolist/8', this.model);
-              // console.log(res)
-              this.list = res.data
-            }
+          const res = await this.$axios.get('/getphotolist/'+cateid,this.model);
+          // console.log(res)
+          if (res.status === 200) {
+            this.list = res.data
           }
+        }
       },
       mounted() {
         mui('.mui-scroll-wrapper').scroll({
