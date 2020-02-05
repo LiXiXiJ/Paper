@@ -77,6 +77,7 @@
               for (let i = 0;i < idArr.length;i++){
                 shopId = parseInt(idArr[i]);
                 const res = await this.$axios.get('/getselsctshop/'+shopId,this.model);
+                // console.log(res)
                 if (res.status === 200) {
                   this.shopCarList = this.shopCarList.concat(res.data)
                 }

@@ -28,7 +28,7 @@
           return {
             id:this.$route.params.id,//从路由中获取到的图片id
             list:{},// 内容对象
-            img:{}
+            img:{}  // 图片对象
           }
       },
       created(){
@@ -40,14 +40,14 @@
           const res = await this.$axios.get('/getphotoinfo/'+this.id,this.model); //await 不执行，返回一个promise对象
           // console.log(res)
           if(res.status === 200) {
-            this.list = res.data[0]
+            this.list = res.data
           }
         },
         async getPhotoImg(){
           const res = await this.$axios.get('/getphotoimg/'+this.id,this.model);
           // console.log(res)
           if(res.status === 200) {
-            this.img = res.data[0]
+            this.img = res.data
           }
         }
       }

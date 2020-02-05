@@ -35,7 +35,6 @@
             const res = await this.$axios.get('/getshoplist/'+this.page_index,this.model);
             // console.log(res)
             if(res.status === 200) {
-              // this.shopList = res.data
               this.shopList = this.shopList.concat(res.data)
             }
           },

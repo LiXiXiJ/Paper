@@ -81,9 +81,9 @@
       methods:{
           async getShopInfo(){
             const res = await this.$axios.get('/getshopinfo/'+this.id,this.model);
-            // console.log(res )
+            // console.log(res)
             if (res.status === 200) {
-              this.shopInfo = res.data[0]
+              this.shopInfo = res.data
             }
           },
         async getShopInfoImg(){

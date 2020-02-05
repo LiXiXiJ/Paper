@@ -1,6 +1,7 @@
 <template>
   <div class="search-container">
-      <input type="search"  placeholder="请开始你的表演" v-model="keywords"><input type="button" value="走你" id="search-btn" @click="changeFlag">
+      <input type="search"  placeholder="请开始你的表演" v-model="keywords" @click="changeFalse">
+      <input type="button" value="走你" id="search-btn" @click="changeTrue">
   <div class="search-list" v-show="flag">
     <router-link class="search-item" v-for="item in search(keywords)" :key="item.id" :to="'/home/shopinfo/'+item.id">
       <img :src="item.img_url">
@@ -35,6 +36,7 @@
           this.getSearchList()
       },
       methods:{
+        //  请求数据
         async getSearchList(){
           const res = await this.$axios.get('/getsearchlist',this.model);
           // console.log(res)
@@ -42,7 +44,8 @@
             this.searchList = res.data
           }
         },
-        search(keywords) { // 根据关键字搜索
+        // 根据关键字搜索
+        search(keywords) {
           var newList = [];
           this.searchList.forEach(item => {
             if (item.title.indexOf(keywords) != -1) {
@@ -51,8 +54,12 @@
           });
           return newList
         },
-        changeFlag(){
+        //  实现点击搜索显示功能
+        changeTrue(){  // 点击按钮显示搜到的内容
           this.flag = true
+        },
+        changeFalse(){  // 点击搜索框隐藏
+          this.flag = false
         }
       }
     }
@@ -116,19 +123,20 @@
   }
   .search-container input{
     background-color: white;
-    border: #6641e2 solid 3px;
+    border: #222222 solid 2px;
     border-radius: 17px 0 0 17px;
     border-right: none;
     width: 40%;
-    margin: 15px 0 0 23%;
+    margin: 20px 0 0 23%;
     font-size: 13px
   }
   #search-btn{
     width: 15%;
     border-radius: 0 17px 17px 0;
-    border: #6641e2 solid 3px;
-    border-left: none;
+    background-color: black;
+    border: none;
     height: 34px;
-    margin: 15px 10% 0 0;
+    margin: 20px 10% 0 0;
+    color: white;
   }
 </style>

@@ -31,7 +31,7 @@
     </ul>
     <ul class="mui-table-view">
       <li class="mui-table-view-cell" style="text-align: center;">
-        <button class="mui-btn mui-btn-block mui-btn-primary" id="tuichu">退出登录</button>
+        <mt-button type="danger" size="large">退出登录</mt-button>
       </li>
     </ul>
   </div>
@@ -92,9 +92,6 @@
   }
   #feedback .mui-table-view:first-child {
     margin-top: 0px;
-  }
-  #tuichu{
-    background-color: red;
   }
   .mui-pull-right.update{
     font-size: 12px;

@@ -26,7 +26,7 @@
             const res = await this.$axios.get('/getshopdesc/'+this.id,this.model);
             // console.log(res)
             if (res.status === 200) {
-              this.shopDesc = res.data[0]
+              this.shopDesc = res.data
             }
           }
       }
@@ -34,6 +34,9 @@
 </script>
 
 <style>
+  body{
+    background-color: white;
+  }
   .description-container{
     margin: 15px 5px 0;
   }

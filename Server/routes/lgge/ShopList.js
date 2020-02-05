@@ -10,24 +10,17 @@ const shoplist = require('../../models/lgge/shoplist');
 
 const ShopList = express.Router();
 
-ShopList.get('/getshoplist/1',async (req,res) => {
-    const model = await shoplist.find(req.body).skip(0).limit(8);
-    res.send(model)
-});
-ShopList.get('/getshoplist/2',async (req,res) => {
-    const model = await shoplist.find(req.body).skip(8).limit(8);
-    res.send(model)
-});
-ShopList.get('/getshoplist/3',async (req,res) => {
-    const model = await shoplist.find(req.body).skip(16).limit(8);
-    res.send(model)
-});
-ShopList.get('/getshoplist/4',async (req,res) => {
-    const model = await shoplist.find(req.body).skip(24).limit(8);
-    res.send(model)
-});
-ShopList.get('/getshoplist/5',async (req,res) => {
-    const model = await shoplist.find(req.body).skip(32).limit(8);
+// 第1页     跳过0条      （1-1）*5
+// 第2页     跳过5条      （2-1）*5
+// 第3页     跳过10条     （3-1）*5
+// 第4页     跳过15条     （4-1）*5
+// 第5页     跳过20条     （5-1）*5
+// 第6页     跳过25条     （6-1）*5
+// 第7页     跳过30条     （7-1）*5
+// 第8页     跳过35条     （8-1）*5
+
+ShopList.get('/getshoplist/:page_index',async (req,res) => {
+    const model = await shoplist.find().skip((req.params.page_index-1)*5).limit(5);
     res.send(model)
 });
 
