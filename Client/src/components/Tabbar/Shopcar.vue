@@ -133,7 +133,7 @@
   }
   .shopCar-button{
     padding: 2px 2px;
-    background-color: red;
+    background-color: rgb(239,79,79);
     color: white;
   }
   #jiesuan .but{

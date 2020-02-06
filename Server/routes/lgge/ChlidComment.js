@@ -10,23 +10,16 @@ const childcomment = require('../../models/lgge/childcomment');
 
 const ChildComment = express.Router();
 
-ChildComment.get('/getchildcom/1',async (req,res) => {
-    const model = await childcomment.find(req.body).skip(0).limit(5);
+ChildComment.get('/getchildcom/:page_index',async (req,res) => {
+    const model = await childcomment.find(req.body).skip((req.params.page_index-1)*5).limit(5).sort({'add_time':1});
     res.send(model)
 });
 
-ChildComment.get('/getchildcom/2',async (req,res) => {
-    const model = await childcomment.find(req.body).skip(5).limit(5)
-    res.send(model)
+ChildComment.post(('/addcomment'), async (req,res) => {
+    // console.log(req.body.add_comment)
+    const r = await childcomment.create(req.body);
+    res.send(r)
 });
-
-// ChildComment.post('/postnewcom',async (req,res) => {
-//     new childcomment(req.body).save((err) => {
-//         if(err){
-//             return res.status(500).send('server error')
-//         }
-//     })
-// });
 
 module.exports = ChildComment;
 

@@ -29,7 +29,11 @@
             searchList:[],
             newList:[],
             keywords:'', // 搜索关键字
-            flag:false
+            flag:false,
+            province:null,
+            city:null,
+            provinces:[],
+            cities:[]
           }
       },
       created(){
@@ -123,7 +127,7 @@
   }
   .search-container input{
     background-color: white;
-    border: #222222 solid 2px;
+    border: #26A2FF solid 2px;
     border-radius: 17px 0 0 17px;
     border-right: none;
     width: 40%;
@@ -133,7 +137,7 @@
   #search-btn{
     width: 15%;
     border-radius: 0 17px 17px 0;
-    background-color: black;
+    background-color: #0062cc;
     border: none;
     height: 34px;
     margin: 20px 10% 0 0;
