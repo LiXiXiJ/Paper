@@ -93,9 +93,9 @@
           return Toast('用户名不能为空')
         }
         if (this.password.length < 6 || this.password.length > 11)  {
-          return Toast('请填写密码6-11位')
+          return Toast('请填写6-11位密码')
         }
-        if (!/^1[3-9][0-9]{9}$/.test(this.tel) || this.tel.length < 11)  {
+        if (!/^1[3-9][0-9]{9}$/.test(this.tel))  {
           return Toast('请输入合法的手机号')
         }
         if (this.code.length === 0) {
@@ -112,12 +112,15 @@
           username:this.username,
           password: this.password,
           tel:this.tel,
-          code:this.code,
           passwordPay:this.passwordPay
         } ;
          this.$axios.post('/register',userObj).then((res) => {
            if (res.data === 1) {
              return Toast('用户名已被注册')
+           }
+           if (res.data === 0) {
+             Toast('注册成功，欢迎加入');
+             this.$router.push('/mine/login')
            }
          })
       }
@@ -196,9 +199,5 @@
     font-size: 12px;
     text-align: center;
     margin-top: 10px;
-  }
-  #code span{
-    font-size: 12px;
-    color: #8f8f94;
   }
 </style>

@@ -5,6 +5,7 @@
  */
 
 const express = require('express');
+const md5 = require('blueimp-md5');
 
 const user = require('../../models/Users/user');
 
@@ -32,7 +33,14 @@ Register.post('/register',async (req,res) => {
     if (userNameData.length !== 0) {  // length = 0 时表示没找到,还没被注册
        return res.send('1')  // 1表示已经被注册
     }
-    console.log(req.body)
+    res.send('0');
+    const User = {
+        username:req.body.username,
+        password:md5(md5(req.body.password)),
+        tel:req.body.tel,
+        passwordPay:md5(md5(req.body.passwordPay))
+    };
+    console.log(User)
 });
 
 module.exports = Register;

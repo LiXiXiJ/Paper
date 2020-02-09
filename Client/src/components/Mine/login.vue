@@ -8,11 +8,11 @@
         <form class="mui-input-group">
           <div class="mui-input-row">
             <label>用户名</label>
-            <input type="text" class="mui-input-clear mui-input" maxlength="8" placeholder="请输入用户名">
+            <input type="text" class="mui-input-clear mui-input" maxlength="8" placeholder="请输入用户名" v-model="username">
           </div>
           <div class="mui-input-row">
             <label>密码</label>
-            <input type="password" class="mui-input-clear mui-input" minlength="3" maxlength="11" placeholder="请输入密码">
+            <input type="password" class="mui-input-clear mui-input" placeholder="请输入密码" v-model="password">
           </div>
         </form>
       </div>
@@ -23,16 +23,17 @@
         <form class="mui-input-group">
           <div class="mui-input-row">
             <label>手机号</label>
-            <input type="text" class="mui-input-clear mui-input" maxlength="11" placeholder="请输入手机号">
+            <input type="text" class="mui-input-clear mui-input" maxlength="11" placeholder="请输入手机号" v-model="tel">
           </div>
-          <div class="mui-input-row">
+          <div class="mui-input-row" id="code">
             <label>验证码</label>
-            <input type="password" class="mui-input-clear mui-input" maxlength="6" placeholder="请输入验证码">
+            <input type="password" class="mui-input-clear mui-input" maxlength="6" placeholder="请输入验证码" v-model="code">
+            <a href="#" @click="sendCode">{{isRun?`${RunTime}秒后重新获取`:`获取验证码`}}</a>
           </div>
         </form>
       </div>
       <div class="mui-content-padded">
-        <button class="mui-btn mui-btn-block mui-btn-primary">登录</button>
+        <button class="mui-btn mui-btn-block mui-btn-primary" @click="Login">登录</button>
         <p id="log-phone">
           <a href="#" @click.prevent="passwordGo">密码登录</a> | <a href="#" @click.prevent="yanZhMaGo">验证码登录</a>
         </p>
@@ -54,7 +55,14 @@
     name: "Mine",
     data(){
       return {
-        flag:true
+        flag:true,
+        username:'',
+        password:'',
+        tel:'',
+        code:'',
+        num:'',
+        isRun:false,
+        RunTime:30
       }
     },
     methods:{
@@ -66,6 +74,80 @@
       },
       showqq(){
         Toast('抱歉，该功能正在测试中！')
+      },
+      sendCode(){
+        if (this.isRun) return ;
+        if (this.tel.length === 0) {
+          return Toast('请输入手机号')
+        }
+        if (!/^1[3-9][0-9]{9}$/.test(this.tel)) {
+          return Toast('请输入合法的手机号')
+        }
+        const TelObj = {
+          tel:this.tel
+        };
+        this.$axios.post('/loginCode',TelObj).then((res) => {
+          if (res.data === 0) {
+            return Toast('手机号还未注册，请先注册')
+          }
+          this.isRun = true;
+          this.timerId = setInterval(() => {
+            if (this.RunTime === 0) {
+              this.RunTime = 30;
+              this.isRun = false;
+              clearInterval(this.timerId)
+            }
+            this.RunTime--
+          },1000);
+          this.num = res.data;
+          setTimeout(() => {
+            Toast({
+              message: `尊敬的${this.tel}用户，您的手机验证码是${this.num}`,
+              position: 'top',
+              iconClass:'mui-icon mui-icon-email'
+            })
+          },10000);
+        })
+      },
+      Login(){
+        if (this.flag) {
+          if (this.username.length === 0) {
+            return Toast('用户名不能为空')
+          }
+          if (this.password.length < 6 || this.password.length > 11)  {
+            return Toast('请输入登录密码')
+          }
+          const UserObj = {
+            username: this.username,
+            password: this.password
+          };
+          this.$axios.post('/login',UserObj).then((res) => {
+            if (res.data === 0) {
+              return Toast('用户名还未注册，请先注册')
+            }
+            if (res.data === 1) {
+              return Toast('密码错误，请重新输入')
+            }
+          })
+        }
+        if (!this.flag) {
+          if (this.tel.length === 0) {
+            return Toast('请输入手机号')
+          }
+          if (!/^1[3-9][0-9]{9}$/.test(this.tel)) {
+            return Toast('请输入合法的手机号')
+          }
+          if (this.code.length === 0) {
+            return Toast('请输入验证码')
+          }
+          // 判断输入的验证码是否一致
+          if (parseInt(this.num) !== parseInt(this.code)) {
+            return Toast('验证码错误，请重新输入')
+          }
+          this.$axios.post('/login').then((res) => {
+
+          })
+        }
       }
     }
   }
@@ -145,5 +227,19 @@
   }
   .other-login #middle{
     margin: 0 15px;
+  }
+  #code{
+    display: flex;
+    justify-content: space-between;
+  }
+  #code input{
+    width: 51%;
+  }
+  #code a{
+    width: 28%;
+    height: 35px;
+    font-size: 12px;
+    text-align: center;
+    margin-top: 10px;
   }
 </style>

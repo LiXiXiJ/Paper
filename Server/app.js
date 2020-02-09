@@ -22,6 +22,7 @@ const ShopDescription = require('./routes/lgge/ShopDescription');
 const ShopCar = require('./routes/lgge/ShopCar');
 const SearchList = require('./routes/lgge/SearchList');
 const Register = require('./routes/User/Register');
+const Login = require('./routes/User/Login');
 
 const app = express();
 
@@ -49,7 +50,8 @@ app.use(ShopDescription);
 app.use(ShopCar);
 app.use(SearchList);
 app.use(Register);
+app.use(Login);
 
 app.listen(3000,() => {
-    console.log('server is running')
+    console.log('server is running on port 3000')
 });
