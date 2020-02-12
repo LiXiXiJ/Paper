@@ -6,7 +6,7 @@
 
 const express = require('express');
 
-const lunbotu= require('../../models/lgge/lunbotu');
+const lunbotu= require('../../models/Home/lunbotu');
 
 const Lunbotu = express.Router();
 

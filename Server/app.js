@@ -8,7 +8,11 @@ const express = require('express');
 const bodyParser = require('body-parser');
 
 //引入路由
-const Lunbotu = require('./routes/lgge/Lunbotu');
+const Lunbotu = require('./routes/Home/Lunbotu');
+const Lunbotu2 = require('./routes/Home/Lunbotu2');
+const YouHaoHuo = require('./routes/Home/YouHaoHuo');
+const AiGuangJie = require('./routes/Home/Aiguangjie');
+const CaiNiLike = require('./routes/Home/CaiNiLike');
 const NewsList = require('./routes/lgge/NewsList');
 const ChildComment = require('./routes/lgge/ChlidComment');
 const PhotoListCate = require('./routes/lgge/PhotoListCate');
@@ -37,6 +41,10 @@ require('./util/db')(app);
 
 // 路由挂载到 APP 服务中
 app.use(Lunbotu);
+app.use(Lunbotu2);
+app.use(YouHaoHuo);
+app.use(AiGuangJie);
+app.use(CaiNiLike);
 app.use(NewsList);
 app.use(ChildComment);
 app.use(PhotoListCate);

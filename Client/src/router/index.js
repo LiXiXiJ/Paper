@@ -11,15 +11,20 @@ import Mine from '../components/Tabbar/Mine'
 import ShopList from '../components/lgge/shoplist'
 import PhotoList from '../components/lgge/photolist'
 import NewsList from '../components/lgge/newslist'
-import Comment from '../components/lgge/comment'
-import Vip from '../components/lgge/vip'
-import Touch from '../components/lgge/touch'
+import WeiWeiTao from '../components/lgge/weiweitao'
+import MaiJiaXiu from '../components/lgge/maijiaxiu'
+import GuanZhu from '../components/lgge/guanzhu'
 
 // 引入 lgge-info 组件
 import PhotoInfo from '../components/lgge/lgge-info/photoinfo'
 import ShopInfo from '../components/lgge/lgge-info/shopinfo'
 import ShopDescription from '../components/lgge/lgge-info/shopdescription'
 import ShopComment from '../components/lgge/lgge-info/shopcomment'
+
+// 引入 Home 组件
+import YouHaoHuo from '../components/Home/HomePublic/YouHaoHuo'
+import AiGuangJie from '../components/Home/HomePublic/AiGuangJie'
+import CaiNiLike from '../components/Home/HomePublic/CaiNiLike'
 
 //引入Mine组件
 import register from '../components/Mine/register'
@@ -46,15 +51,19 @@ export default new Router({
     { path:'/home/shoplist',component:ShopList },
     { path:'/home/photolist',component:PhotoList },
     { path:'/home/newslist',component:NewsList },
-    { path:'/home/comment',component:Comment },
-    { path:'/home/vip',component:Vip },
-    { path:'/home/touch',component:Touch },
+    { path:'/home/weiweitao',component:WeiWeiTao },
+    { path:'/home/maijiaxiu',component:MaiJiaXiu },
+    { path:'/home/guanzhu',component:GuanZhu },
 
 
     { path:'/home/photoinfo/:id',component:PhotoInfo },
     { path:'/home/shopinfo/:id',component:ShopInfo },
     { path:'/home/shopdescription/:id',component:ShopDescription},
     { path:'/home/shopcomment',component:ShopComment },
+
+    { path:'/home/youhaohuo/:id',component:YouHaoHuo },
+    { path:'/home/aiguangjie',component:AiGuangJie},
+    { path:'/home/cainilike/:id',component:CaiNiLike},
 
     { path:'/mine/register',component:register },
     { path:'/mine/login',component:login },

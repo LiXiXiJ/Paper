@@ -96,4 +96,7 @@
   .mui-pull-right.update{
     font-size: 12px;
   }
+  #main .mui-navigate-right{
+    background-color: #efeff4;
+  }
 </style>

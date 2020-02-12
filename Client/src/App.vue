@@ -3,7 +3,7 @@
 <!--    顶部 Header区域-->
     <mt-header fixed title="网上购物系统">
       <span slot="left" @click="goBack" v-show="flag">
-        <mt-button icon="back">返回</mt-button>
+        <mt-button icon="back"></mt-button>
       </span>
     </mt-header>
 
