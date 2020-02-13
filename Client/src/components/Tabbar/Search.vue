@@ -12,7 +12,7 @@
           <span class="old">￥{{ item.old_price }}</span>
         </p>
         <p class="sell">
-          <span><img id="hotsell" src="../../lib/img/other/hotsell.png">热卖中</span>
+          <span id="hotsell"><i class="icon iconfont icon-lunkuodasan-"></i>热卖中</span>
           <span>库存{{ item.last_item }}件</span>
         </p>
       </div>
@@ -142,5 +142,9 @@
     height: 34px;
     margin: 20px 10% 0 0;
     color: white;
+  }
+  #hotsell{
+    color: red;
+    width: 55px;
   }
 </style>

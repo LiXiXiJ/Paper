@@ -69,8 +69,7 @@
       <div class="shop-inner">
         <img class="shop" src="//img.alicdn.com/tfs/TB1UNX2bSFRMKJjy0FhXXX.xpXa-112-46.png">
         <p class="subtitle">献给聪明可爱的你
-          <a href="#">更多</a>
-          <img id="more" src="../../lib/img/other/more.png">
+          <router-link class="router-link" to="/home/shoplist">更多<i class="icon iconfont icon-icon_A"></i></router-link>
         </p>
         <ul class="shops-list">
           <li class="shop-li" v-for="item in aiguangjieList" :key="item.id" @click="goInfo">
@@ -277,10 +276,6 @@
   .subtitle a{
     margin-left:100px;
   }
-  #more{
-    width: 15px;
-    height: 15px;
-  }
   .shop-img img{
     width: 115px;
     height: 115px;
@@ -308,8 +303,11 @@
     height: 20px;
   }
   .name{
-    padding-left: 30px;
+    padding-left: 5px;
     font-size: 12px;
+    height: 21px;
+    text-overflow: ellipsis;
+    overflow: hidden;
   }
   .shops-list{
     display: flex;
@@ -370,5 +368,8 @@
   }
   #lun2{
     height: 50px;
+  }
+  .router-link{
+    color: rgb(255,69,104);
   }
 </style>

@@ -6,19 +6,19 @@
         </div>
         <div class="top-content">
           <div class="content-img">
-              <img src="https://img.alicdn.com/imgextra/i3/1840508859/TB227FSgHGYBuNjy0FoXXciBFXa_!!1840508859-0-beehive-scenes.jpg_300x300.jpg">
+              <img :src="youHaoHuoInfoList.img_url">
           </div>
           <div class="content-info">
-            <h2>YSL限量眼影银盘</h2>
+            <h2>{{ youHaoHuoInfoList.title }}</h2>
             <p class="content-tuijian">来自潮品达人爱美丽的夏老师推荐：</p>
-            <p class="youhaohuo-title">金属边框闪亮眼影盒，彰显低调的奢华之美。</p>
+            <p class="youhaohuo-title">{{ youHaoHuoInfoList.subtitle }}</p>
             <p class="content-action">
               <span class="youhaohuo-price"><span>￥</span>338</span>
               <span class="youhaohuo-view">查看宝贝<i class="icon iconfont icon-youjiantou"></i>
               </span>
               <span class="youhaohuo-like">
                 <i class="icon iconfont icon-xiaolian"></i>
-                30人说好</span>
+                {{ youHaoHuoInfoList.num }}人说好</span>
             </p>
           </div>
         </div>
@@ -28,54 +28,20 @@
       </div>
       <div class="youhaohuo-bottom">
         <ul class="youhaohuo-list">
-          <li class="youhaohuo-item">
+          <li class="youhaohuo-item" v-for="item in youHaoHuoInfoBottomList" :key="item.id">
             <a href="javascript:;">
-              <img src="//img.alicdn.com/imgextra/i3/666760192/TB2kHWwdcnI8KJjSsziXXb8QpXa_!!666760192-0-beehive-scenes.jpg_250x250xz.jpg">
+              <img :src="item.img_url">
               <h3>
                 <div class="item-title">
-                  YSL 五色眼影盘
+                  {{ item.title }}
                 </div>
               </h3>
-              <p class="item-content">“超细腻粉质”</p>
+              <p class="item-content">{{ item.subtitle }}</p>
               <p class="item-extra">
                 <span class="item-price">
-                  <span>￥</span>360
+                  <span>￥</span>{{ item.price }}
                 </span>
-                <span class="item-like">5人说好</span>
-              </p>
-            </a>
-          </li>
-          <li class="youhaohuo-item">
-            <a href="javascript:;">
-              <img src="//img.alicdn.com/imgextra/i3/666760192/TB2kHWwdcnI8KJjSsziXXb8QpXa_!!666760192-0-beehive-scenes.jpg_250x250xz.jpg">
-              <h3>
-                <div class="item-title">
-                  YSL 五色眼影盘
-                </div>
-              </h3>
-              <p class="item-content">“超细腻粉质，斩男色桃花盘五色眼影，帮你迷倒万千少男。”</p>
-              <p class="item-extra">
-                <span class="item-price">
-                  <span>￥</span>360
-                </span>
-                <span class="item-like">5人说好</span>
-              </p>
-            </a>
-          </li>
-          <li class="youhaohuo-item">
-            <a href="javascript:;">
-              <img src="//img.alicdn.com/imgextra/i3/666760192/TB2kHWwdcnI8KJjSsziXXb8QpXa_!!666760192-0-beehive-scenes.jpg_250x250xz.jpg">
-              <h3>
-                <div class="item-title">
-                  YSL 五色眼影盘
-                </div>
-              </h3>
-              <p class="item-content">“超细腻粉质，斩男色桃花盘五色眼影，帮你迷倒万千少男，斩男色桃花盘五色眼影，帮你迷倒万千少男。”</p>
-              <p class="item-extra">
-                <span class="item-price">
-                  <span>￥</span>360
-                </span>
-                <span class="item-like">5人说好</span>
+                <span class="item-like">{{ item.num }}人说好</span>
               </p>
             </a>
           </li>
@@ -86,7 +52,34 @@
 
 <script>
     export default {
-        name: "YouHaoHuo"
+        name: "YouHaoHuo",
+      data(){
+          return{
+            id:this.$route.params.id,
+            youHaoHuoInfoList:{},
+            youHaoHuoInfoBottomList:[]
+          }
+      },
+      created(){
+        this.getYouHaoHuoInfo();
+        this.getYouHaoHuoBottom()
+      },
+      methods:{
+          async getYouHaoHuoInfo(){
+            const res = await this.$axios.get('/getyouhaohuoinfo/'+this.id,this.model);
+            // console.log(res.data)
+            if (res.status === 200) {
+              this.youHaoHuoInfoList = res.data
+            }
+          },
+        async getYouHaoHuoBottom(){
+            const res = await this.$axios.get('/getyouhaohuoinfobottom/'+this.id,this.model);
+          // console.log(res)
+          if (res.status === 200) {
+            this.youHaoHuoInfoBottomList = res.data
+          }
+        }
+      }
     }
 </script>
 
@@ -104,11 +97,13 @@
     height: 40px;
   }
   .content-img img{
-    width: 120px;
-    height: 120px;
+    width: 115px;
+    height: 130px;
   }
   .content-info{
     float: right;
+    width: 69%;
+    padding: 0 5px 5px;
   }
   .content-img{
     float: left;
@@ -119,10 +114,13 @@
   .content-tuijian{
     color: #007aff;
     font-size: 13px;
-    margin: 10px 0 0 ;
+    margin: 5px 0 0 ;
   }
   .youhaohuo-title{
     font-size: 13px;
+    line-height: 15px;
+    margin: 5px 0;
+    min-height: 45px;
   }
   .content-action{
     margin: 0;
@@ -150,13 +148,13 @@
   .youhaohuo-like{
     color: #53bfe6;
     display: inline-block;
-    margin-left: 20px;
+    margin-left: 15px;
     font-size: 12px;
   }
   .youhaohuo-middle{
     width: 80%;
     height: 30px;
-    margin-top: 33%;
+    margin-top: 40%;
     background-color: #e8e8e8;
   }
   .youhaohuo-middle p{
@@ -197,6 +195,8 @@
     font-size: 12px;
     line-height: 17px;
     height: 51px;
+    text-overflow: ellipsis;
+    overflow: hidden;
   }
   .item-price{
     color: red;
