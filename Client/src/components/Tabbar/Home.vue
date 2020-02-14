@@ -35,9 +35,9 @@
         <div class="mui-media-body">晒一晒</div>
         </router-link></li>
       <li class="mui-table-view-cell mui-media mui-col-xs-4 mui-col-sm-3">
-        <router-link to="/home/guanzhu">
+        <router-link to="/home/shoucangjia">
         <img src="../../lib/img/lgge/6.png">
-        <div class="mui-media-body">关注店</div>
+        <div class="mui-media-body">收藏夹</div>
         </router-link></li>
     </ul>
     <div class="middle">
@@ -69,7 +69,7 @@
       <div class="shop-inner">
         <img class="shop" src="//img.alicdn.com/tfs/TB1UNX2bSFRMKJjy0FhXXX.xpXa-112-46.png">
         <p class="subtitle">献给聪明可爱的你
-          <router-link class="router-link" to="/home/shoplist">更多<i class="icon iconfont icon-icon_A"></i></router-link>
+          <router-link class="router-link" to="/home/aiguangjie">更多<i class="icon iconfont icon-icon_A"></i></router-link>
         </p>
         <ul class="shops-list">
           <li class="shop-li" v-for="item in aiguangjieList" :key="item.id" @click="goInfo">

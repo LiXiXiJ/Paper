@@ -6,19 +6,19 @@
         </div>
         <div class="top-content">
           <div class="content-img">
-              <img :src="youHaoHuoInfoList.img_url">
+              <img :src="youHaoHuoInfoShop.img_url">
           </div>
           <div class="content-info">
-            <h2>{{ youHaoHuoInfoList.title }}</h2>
+            <h2>{{ youHaoHuoInfoShop.title }}</h2>
             <p class="content-tuijian">来自潮品达人爱美丽的夏老师推荐：</p>
-            <p class="youhaohuo-title">{{ youHaoHuoInfoList.subtitle }}</p>
+            <p class="youhaohuo-title">{{ youHaoHuoInfoShop.subtitle }}</p>
             <p class="content-action">
               <span class="youhaohuo-price"><span>￥</span>338</span>
-              <span class="youhaohuo-view">查看宝贝<i class="icon iconfont icon-youjiantou"></i>
-              </span>
+             <router-link :to="'/home/buyyouhaohuoshop/'+youHaoHuoInfoShop.id"> <span class="youhaohuo-view">查看宝贝<i class="icon iconfont icon-youjiantou"></i>
+              </span></router-link>
               <span class="youhaohuo-like">
                 <i class="icon iconfont icon-xiaolian"></i>
-                {{ youHaoHuoInfoList.num }}人说好</span>
+                {{ youHaoHuoInfoShop.num }}人说好</span>
             </p>
           </div>
         </div>
@@ -28,7 +28,7 @@
       </div>
       <div class="youhaohuo-bottom">
         <ul class="youhaohuo-list">
-          <li class="youhaohuo-item" v-for="item in youHaoHuoInfoBottomList" :key="item.id">
+          <router-link class="youhaohuo-item" v-for="item in youHaoHuoInfoBottomList" :key="item.id" :to="'/home/buyyouhaohuoinfoshop/'+item.id">
             <a href="javascript:;">
               <img :src="item.img_url">
               <h3>
@@ -44,7 +44,7 @@
                 <span class="item-like">{{ item.num }}人说好</span>
               </p>
             </a>
-          </li>
+          </router-link>
         </ul>
       </div>
     </div>
@@ -56,7 +56,7 @@
       data(){
           return{
             id:this.$route.params.id,
-            youHaoHuoInfoList:{},
+            youHaoHuoInfoShop:{},
             youHaoHuoInfoBottomList:[]
           }
       },
@@ -69,7 +69,7 @@
             const res = await this.$axios.get('/getyouhaohuoinfo/'+this.id,this.model);
             // console.log(res.data)
             if (res.status === 200) {
-              this.youHaoHuoInfoList = res.data
+              this.youHaoHuoInfoShop = res.data
             }
           },
         async getYouHaoHuoBottom(){

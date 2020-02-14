@@ -8,7 +8,7 @@
       </div>
       <div class="guang-list">
         <ul class="guang-item">
-          <li class="gunag-li" v-for="item in aiGuangJieInfoList" :key="item.id">
+          <router-link class="gunag-li" v-for="item in aiGuangJieInfoList" :key="item.id" :to="'/home/buyaiguangjieinfoshop/'+item.id" tag="li">
             <img class="guang-img" :src="item.img_url">
             <div class="guang-price">
               <div class="gunag-zan">
@@ -27,7 +27,7 @@
               </div>
             </div>
             <p class="guang-title">{{ item.title }}</p>
-          </li>
+          </router-link>
         </ul>
       </div>
     </div>

@@ -13,7 +13,7 @@ import PhotoList from '../components/lgge/photolist'
 import NewsList from '../components/lgge/newslist'
 import WeiWeiTao from '../components/lgge/weiweitao'
 import MaiJiaXiu from '../components/lgge/maijiaxiu'
-import GuanZhu from '../components/lgge/guanzhu'
+import ShouCangJia from '../components/lgge/shoucangjia'
 
 // 引入 lgge-info 组件
 import PhotoInfo from '../components/lgge/lgge-info/photoinfo'
@@ -22,9 +22,12 @@ import ShopDescription from '../components/lgge/lgge-info/shopdescription'
 import ShopComment from '../components/lgge/lgge-info/shopcomment'
 
 // 引入 Home 组件
-import YouHaoHuo from '../components/Home/HomePublic/YouHaoHuo'
-import AiGuangJie from '../components/Home/HomePublic/AiGuangJie'
-import CaiNiLike from '../components/Home/HomePublic/CaiNiLike'
+import YouHaoHuo from '../components/Home/YouHaoHuo'
+import buyYouHaoHuoShop from '../components/Home/PublicCom/buyYouHaoHuoShop'
+import buyYouHaoHuoInfoShop from '../components/Home/PublicCom/buyYouHaoHuoInfoShop'
+import AiGuangJie from '../components/Home/AiGuangJie'
+import buyAiGuangJieInfoShop from '../components/Home/PublicCom/buyAiGuangJieInfoShop'
+import CaiNiLike from '../components/Home/CaiNiLike(buyCaiNiLikeShop)'
 
 //引入Mine组件
 import register from '../components/Mine/register'
@@ -53,7 +56,7 @@ export default new Router({
     { path:'/home/newslist',component:NewsList },
     { path:'/home/weiweitao',component:WeiWeiTao },
     { path:'/home/maijiaxiu',component:MaiJiaXiu },
-    { path:'/home/guanzhu',component:GuanZhu },
+    { path:'/home/shoucangjia',component:ShouCangJia },
 
 
     { path:'/home/photoinfo/:id',component:PhotoInfo },
@@ -62,7 +65,10 @@ export default new Router({
     { path:'/home/shopcomment',component:ShopComment },
 
     { path:'/home/youhaohuo/:id',component:YouHaoHuo },
+    { path:'/home/buyyouhaohuoshop/:id',component:buyYouHaoHuoShop},
+    { path:'/home/buyyouhaohuoinfoshop/:id',component:buyYouHaoHuoInfoShop},
     { path:'/home/aiguangjie',component:AiGuangJie},
+    { path:'/home/buyaiguangjieinfoshop/:id',component:buyAiGuangJieInfoShop},
     { path:'/home/cainilike/:id',component:CaiNiLike},
 
     { path:'/mine/register',component:register },
