@@ -31,6 +31,8 @@ const ShopInfoImg = require('./routes/lgge/ShopInfoImg');
 const ShopDescription = require('./routes/lgge/ShopDescription');
 const ShopCar = require('./routes/lgge/ShopCar');
 const SearchList = require('./routes/lgge/SearchList');
+const WeiWeiTao = require('./routes/lgge/WeiWeiTao');
+const ShaiYiShai = require('./routes/lgge/ShaiYiShai');
 const Register = require('./routes/User/Register');
 const Login = require('./routes/User/Login');
 
@@ -69,6 +71,8 @@ app.use(ShopInfoImg);
 app.use(ShopDescription);
 app.use(ShopCar);
 app.use(SearchList);
+app.use(WeiWeiTao);
+app.use(ShaiYiShai);
 app.use(Register);
 app.use(Login);
 

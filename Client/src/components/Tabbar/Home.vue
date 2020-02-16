@@ -30,7 +30,7 @@
         <div class="mui-media-body">微微淘</div>
         </router-link></li>
       <li class="mui-table-view-cell mui-media mui-col-xs-4 mui-col-sm-3">
-        <router-link to="/home/maijiaxiu">
+        <router-link to="/home/shaiyishai">
         <img src="../../lib/img/lgge/5.png">
         <div class="mui-media-body">晒一晒</div>
         </router-link></li>

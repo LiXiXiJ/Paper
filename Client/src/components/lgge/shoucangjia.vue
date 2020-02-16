@@ -5,7 +5,7 @@
         <mt-button type="primary" size="small" v-else @click="show">完成</mt-button>
       </div>
       <div class="shoucangjia-all">
-        <p>全部宝贝</p>
+        <p>全部宝贝(3)</p>
       </div>
       <div class="shoucangjia-list">
             <div class="shouchangjia-img">

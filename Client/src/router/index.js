@@ -12,7 +12,7 @@ import ShopList from '../components/lgge/shoplist'
 import PhotoList from '../components/lgge/photolist'
 import NewsList from '../components/lgge/newslist'
 import WeiWeiTao from '../components/lgge/weiweitao'
-import MaiJiaXiu from '../components/lgge/maijiaxiu'
+import ShaiYiShai from '../components/lgge/shaiyishai'
 import ShouCangJia from '../components/lgge/shoucangjia'
 
 // 引入 lgge-info 组件
@@ -55,7 +55,7 @@ export default new Router({
     { path:'/home/photolist',component:PhotoList },
     { path:'/home/newslist',component:NewsList },
     { path:'/home/weiweitao',component:WeiWeiTao },
-    { path:'/home/maijiaxiu',component:MaiJiaXiu },
+    { path:'/home/shaiyishai',component:ShaiYiShai },
     { path:'/home/shoucangjia',component:ShouCangJia },
 
 
