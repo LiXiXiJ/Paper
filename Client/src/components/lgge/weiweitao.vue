@@ -10,7 +10,7 @@
       <div class="weiweitao-content">
         <div class="weiweitao-card" v-for="(item,i) in weiWeiTaoList" :key="item.id">
         <div class="tao-button">
-          <mt-button plain="plain" type="danger" size="small">关注</mt-button>
+          <mt-button plain="plain" type="danger" size="small" @click="guanZhuStore(i)">关注</mt-button>
         </div>
         <div class="tao-dian">
           <p class="weiweitao-dianname">{{ item.name }}<span>{{ item.time }}</span></p>
@@ -49,6 +49,7 @@
         this.getWeiWeiTao()
       },
       methods:{
+        //   点赞功能
         zan(i){ // i 表示当前点击的那一项
           // console.log(i)
           this.weiWeiTaoList.some((value, index, array) => {
@@ -79,12 +80,25 @@
           })
           // localStorage.setItem('weiWeiTaoZanNum',this.num)
         },
+        //  获取数据
         async getWeiWeiTao(){
           const res = await this.$axios.get('/getweiweitao',this.model);
           // console.log(res)
           if (res.status === 200) {
             this.weiWeiTaoList = res.data
           }
+        },
+        // 将关注的商店传到后台
+        guanZhuStore(i){
+          // console.log(this.weiWeiTaoList[i].id)
+          const storeObj = {
+            id: this.weiWeiTaoList[i].id,
+            header: this.weiWeiTaoList[i].header,
+            name: this.weiWeiTaoList[i].name
+          };
+          this.$axios.post('/postweitaoguanzhustore',storeObj).then((res) => {
+            // 向后台传递数据
+          })
         }
       }
     }

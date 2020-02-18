@@ -29,6 +29,12 @@ import AiGuangJie from '../components/Home/AiGuangJie'
 import buyAiGuangJieInfoShop from '../components/Home/PublicCom/buyAiGuangJieInfoShop'
 import CaiNiLike from '../components/Home/CaiNiLike(buyCaiNiLikeShop)'
 
+// 引入home 下商品评论组件
+import youHaoHuoShopComment from '../components/Home/PublicCom/comment/youHaoHuoShopComment'
+import youHaoHuoInfoShopComment from '../components/Home/PublicCom/comment/youHaoHuoInfoShopComment'
+import aiGuangJieInfoShopComment from '../components/Home/PublicCom/comment/aiGuangJieInfoShopComment'
+import caiNiLikeShopComment from '../components/Home/PublicCom/comment/caiNiLikeShopComment'
+
 //引入Mine组件
 import register from '../components/Mine/register'
 import login from '../components/Mine/login'
@@ -62,7 +68,7 @@ export default new Router({
     { path:'/home/photoinfo/:id',component:PhotoInfo },
     { path:'/home/shopinfo/:id',component:ShopInfo },
     { path:'/home/shopdescription/:id',component:ShopDescription},
-    { path:'/home/shopcomment',component:ShopComment },
+    { path:'/home/shopcomment/:id',component:ShopComment },
 
     { path:'/home/youhaohuo/:id',component:YouHaoHuo },
     { path:'/home/buyyouhaohuoshop/:id',component:buyYouHaoHuoShop},
@@ -70,6 +76,11 @@ export default new Router({
     { path:'/home/aiguangjie',component:AiGuangJie},
     { path:'/home/buyaiguangjieinfoshop/:id',component:buyAiGuangJieInfoShop},
     { path:'/home/cainilike/:id',component:CaiNiLike},
+
+    { path:'/home/youHaoHuoShopComment/:id',component:youHaoHuoShopComment},
+    { path:'/home/youHaoHuoInfoShopComment/:id',component:youHaoHuoInfoShopComment},
+    { path:'/home/aiGuangJieInfoShopComment/:id',component:aiGuangJieInfoShopComment},
+    { path:'/home/caiNiLikeShopComment/:id',component:caiNiLikeShopComment},
 
     { path:'/mine/register',component:register },
     { path:'/mine/login',component:login },

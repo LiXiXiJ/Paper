@@ -80,12 +80,12 @@
     line-height: 25px;
   }
   .img-container{
-    background-color: #26A2FF;
+    border-radius: 5%;
   }
   .img-container img{
     width: 43%;
     height: 43%;
     margin: 10px 10px 0;
-    box-shadow: #999;
+    box-shadow: #999 0 0 5px;
   }
 </style>

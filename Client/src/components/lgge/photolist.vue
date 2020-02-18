@@ -12,6 +12,7 @@
       </div>
       <ul class="photo-list">
         <router-link tag="li" v-for="item in list" :key="item.id" :to="'/home/photoinfo/'+item.id" >
+<!--          图片懒加载 -->
           <img v-lazy="item.img_url">
           <div class="info">
             <h1 class="info-title">{{ item.title }}</h1>
@@ -66,11 +67,6 @@
   *{
     touch-action:pan-y
   }
-  img[lazy=loading] {
-    width: 40px;
-    height: 300px;
-    margin: auto;
-  }
   .photo-list{
     margin: 0;
     padding: 10px 10px 0;
@@ -82,6 +78,12 @@
     margin-bottom: 10px;
     box-shadow: 0 0 6px #999;
     position: relative;
+  }
+  /*懒加载*/
+  .photo-list li img[lazy=loading]{
+    width: 40px;
+    height: 300px;
+    margin: auto;
   }
   .photo-list img{
     /*min-height解决刚进去图片未请求到时页面错乱的问题*/

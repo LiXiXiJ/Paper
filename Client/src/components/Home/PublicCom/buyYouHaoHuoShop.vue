@@ -24,7 +24,7 @@
       </p>
     </div>
     <div class="buy-comment">
-      <mt-button type="primary" size="large">宝贝评论</mt-button>
+      <mt-button type="primary" size="large" @click="GoComment">宝贝评论</mt-button>
     </div>
     <div class="shop-collect">
       <p>觉得不错？关注宝贝？</p>
@@ -47,6 +47,7 @@
       created() {
           this.getBuyYouHaoHuo()
       },
+      // 获取商品信息
       methods:{
           async getBuyYouHaoHuo(){
             const res = await this.$axios.get('/getbuyyouhaohuo/'+this.id,this.model);
@@ -55,8 +56,21 @@
               this.youHaoHuo = res.data
             }
           },
+        // 收藏商品
         guanZhu(){
-            console.log('ok')
+            const shouCJObj = {
+              id:this.youHaoHuo.id,
+              title:this.youHaoHuo.title,
+              img_url:this.youHaoHuo.img_url,
+              price:this.youHaoHuo.price
+            };
+            this.$axios.post('/postshoucangjia',shouCJObj).then((res) => {
+              // 收藏商品
+            })
+        },
+        // 跳转到评论页面
+        GoComment(){
+            this.$router.push('/home/youHaoHuoShopComment/'+this.id)
         }
       }
     }

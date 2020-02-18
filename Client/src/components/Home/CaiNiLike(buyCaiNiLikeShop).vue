@@ -24,7 +24,7 @@
       </p>
     </div>
     <div class="buy-comment">
-      <mt-button type="primary" size="large">宝贝评论</mt-button>
+      <mt-button type="primary" size="large" @click="GoComment">宝贝评论</mt-button>
     </div>
     <div class="shop-collect">
       <p>觉得不错？关注宝贝？</p>
@@ -56,7 +56,18 @@
             }
           },
         guanZhu(){
-            console.log('ok')
+          const shouCJObj = {
+            id:this.BuyCaiNiLikeShop.id,
+            title:this.BuyCaiNiLikeShop.title,
+            img_url:this.BuyCaiNiLikeShop.img_url,
+            price:this.BuyCaiNiLikeShop.like_price
+          };
+          this.$axios.post('/postshoucangjia',shouCJObj).then((res) => {
+            // 收藏商品
+          })
+        },
+        GoComment(){
+            this.$router.push('/home/caiNiLikeShopComment/'+this.id)
         }
       }
     }

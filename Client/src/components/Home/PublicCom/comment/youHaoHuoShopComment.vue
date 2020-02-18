@@ -5,12 +5,12 @@
     <textarea placeholder="请输入评论内容（最多120字）" maxlength="120" v-model="comment"></textarea>
     <mt-button type="primary" size="large" @click="addComment">发表评论</mt-button>
     <div class="cmtList">
-      <div class="cmtItem" v-for="(item,i) in shopCommentList" :key="item._id">
+      <div class="cmtItem" v-for="(item,i) in youHaoHuoShopCommentList" :key="item._id">
         <div class="cmtTitle">
           第{{ i+1 }}楼&nbsp;&nbsp;用户：匿名用户&nbsp;&nbsp;发表时间：{{ item.time | dataFilter }}
         </div>
         <div class="cmtBody">
-          {{ item.comment}}
+          {{ item.comment }}
         </div>
       </div>
     </div>
@@ -20,19 +20,19 @@
 <script>
   import { Toast } from 'mint-ui';
     export default {
-        name: "shopcomment",
+        name: "youHaoHuoShopComment",
       data(){
           return{
             id:this.$route.params.id,
-            comment:'', // 填写的评论数据
-            shopCommentList:[], // 获取的评论数组
+            comment:'',  // 填写的评论内容
+            youHaoHuoShopCommentList:[]
           }
       },
       created(){
-        this.getShopComment()
+          this.getYouHaoHuoShopComment()
       },
       methods:{
-        //  添加评论
+        //  发表评论
         addComment(){
           if (this.comment.length === 0) {
             return Toast('评论内容不能为空')
@@ -41,19 +41,19 @@
             id:this.id,
             comment: this.comment
           };
-          this.$axios.post('/postshopcomment',commentObj).then((res) => {
+          this.$axios.post('/postyouhaohuoshopcomment',commentObj).then((res) => {
             if (res.status === 200) {
               Toast('宝贝评价成功')
             }
           });
-          this.shopCommentList.push(commentObj); // 未刷新页面时直接添加到页面
-          this.comment = '';  // 清空评论数据
+          this.youHaoHuoShopCommentList.push(commentObj); // 评论内容拼到后面
+          this.comment = '';  // 清空评论内容
         },
-        //  获取评论
-        async getShopComment(){
-          const res = await this.$axios.get('/getshopcomment/'+this.id,this.model);
+      //   获取评论数据
+        async getYouHaoHuoShopComment(){
+          const res = await this.$axios.get('/getyouhaohuoshopcomment/'+this.id,this.model);
           if (res.status === 200) {
-            this.shopCommentList = res.data
+            this.youHaoHuoShopCommentList = res.data
           }
         }
       }

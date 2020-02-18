@@ -56,7 +56,9 @@
               if (result.status === 200) {
                 Toast('评论成功')
               }
-            })
+            });
+          this.childcomment.push(newComment);  // 页面未刷新时加到数组中展示
+          this.comment = '';  // 清空填写内容
         }
       }
     }

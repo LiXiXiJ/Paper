@@ -112,7 +112,7 @@
           this.$router.push('/home/shopdescription/'+this.id)
         },
         goToShopComment(){
-          this.$router.push('/home/shopcomment')
+          this.$router.push('/home/shopcomment/'+this.id)
         },
 
         // 钩子函数实现半场动画

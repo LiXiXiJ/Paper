@@ -15,7 +15,7 @@
 
 <!--    底部 Tabbar 区域-->
     <nav class="mui-bar mui-bar-tab">
-      <router-link class="mui-tab-item-my " to="/home">
+      <router-link class="mui-tab-item-my" to="/home">
         <span class="mui-icon mui-icon-home"></span>
         <span class="mui-tab-label">首页</span>
       </router-link>
@@ -90,7 +90,7 @@ export default {
     transition: all 0.7s linear;
   }
 
-/*  该类名解决tabbar无法切换的问题*/
+/*  改类名解决tabbar无法切换的问题*/
   .mui-bar-tab.mui-tab-item-my.mui-active {
     color: #007aff;
   }

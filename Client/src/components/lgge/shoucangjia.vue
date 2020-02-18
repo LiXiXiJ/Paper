@@ -1,41 +1,57 @@
 <template>
     <div class="shoucangjia-container">
-      <div class="guanli">
-        <mt-button type="primary" size="small" v-if="guanLiFlag" @click="show">管理</mt-button>
-        <mt-button type="primary" size="small" v-else @click="show">完成</mt-button>
+      <div class="type">
+        <a href="javascript:;" @click="goBaby">宝贝</a>&nbsp;&nbsp;|&nbsp;&nbsp;<a href="javascript:;" @click="goStore">商店</a>
       </div>
-      <div class="shoucangjia-all">
-        <p>全部宝贝(3)</p>
-      </div>
-      <div class="shoucangjia-list">
-            <div class="shouchangjia-img">
-              <img src="https://img.alicdn.com/imgextra/i3/1840508859/TB227FSgHGYBuNjy0FoXXciBFXa_!!1840508859-0-beehive-scenes.jpg_180x180xzq90.jpg_.webp">
+      <div v-if="baoBFlag">
+        <div class="guanli">
+          <mt-button type="primary" size="small" v-if="guanLiFlag" @click="show">管理</mt-button>
+          <mt-button type="primary" size="small" v-else @click="show">完成</mt-button>
+        </div>
+        <div class="shoucangjia-all">
+          <p>全部宝贝</p>
+        </div>
+        <ul>
+          <li v-for="(item,i) in ShouCJShopList" :key="item._id">
+            <div class="shoucangjia-list">
+              <div class="shouchangjia-img">
+                <img :src="item.img_url">
+              </div>
+              <div class="shoucangjia-info">
+                <p class="info-title">{{ item.title }}</p>
+                <p class="shoucangjia-button">
+                  <mt-button plain="plain" size="small" type="danger" v-show="shouCFlag" @click="removeShouCJShop(i)">取消收藏
+                  </mt-button></p>
+                <p class="info-price"><span>￥</span>{{ item.price }}</p>
+              </div>
             </div>
-            <div class="shoucangjia-info">
-              <p class="info-title">维生素我试试是是是少时诵诗书所所所所所所所所</p>
-              <p class="shoucangjia-button"><mt-button plain="plain" size="small" type="danger" v-show="shouCFlag">取消收藏</mt-button></p>
-              <p class="info-price"><span>￥</span>27.9</p>
+          </li>
+        </ul>
+      </div>
+
+      <div v-else>
+        <div class="guanli">
+          <mt-button type="primary" size="small" v-if="storeFlag" @click="storeshow">管理</mt-button>
+          <mt-button type="primary" size="small" v-else @click="storeshow">完成</mt-button>
+        </div>
+        <div class="shoucangjia-all">
+          <p>全部商店</p>
+        </div>
+        <ul>
+          <li v-for="(item,i) in guanZhuStoreList" :key="item._id">
+            <div class="shoucangjia-list">
+              <div class="shouchangjia-img">
+                <img style="width: 70px;height: 70px;border-radius: 50%" :src="item.header">
+              </div>
+              <div class="shoucangjia-info" style="height: 85px">
+                <p class="info-title" style="color: #222222;font-weight: bold">{{ item.name }}</p>
+                <p class="shoucangjia-button" style="margin: 0">
+                  <mt-button plain="plain" size="small" type="danger" v-show="guanzhuFlag" @click="removeGuanZhu(i)" >取消关注
+                  </mt-button></p>
+              </div>
             </div>
-      </div>
-      <div class="shoucangjia-list">
-        <div class="shouchangjia-img">
-          <img src="https://img.alicdn.com/imgextra/i3/1840508859/TB227FSgHGYBuNjy0FoXXciBFXa_!!1840508859-0-beehive-scenes.jpg_180x180xzq90.jpg_.webp">
-        </div>
-        <div class="shoucangjia-info">
-          <p class="info-title">维生素我试试是是是少时诵诗书所所所所所所所所</p>
-          <p class="shoucangjia-button"><mt-button plain="plain" size="small" type="danger" v-show="shouCFlag">取消收藏</mt-button></p>
-          <p class="info-price"><span>￥</span>27.9</p>
-        </div>
-      </div>
-      <div class="shoucangjia-list">
-        <div class="shouchangjia-img">
-          <img src="https://img.alicdn.com/imgextra/i3/1840508859/TB227FSgHGYBuNjy0FoXXciBFXa_!!1840508859-0-beehive-scenes.jpg_180x180xzq90.jpg_.webp">
-        </div>
-        <div class="shoucangjia-info">
-          <p class="info-title">维生素我试试是是是少时诵诗书所所所所所所所所</p>
-          <p class="shoucangjia-button"><mt-button plain="plain" size="small" type="danger" v-show="shouCFlag">取消收藏</mt-button></p>
-          <p class="info-price"><span>￥</span>27.9</p>
-        </div>
+          </li>
+        </ul>
       </div>
     </div>
 </template>
@@ -45,15 +61,82 @@
         name: "shoucangjia",
       data(){
           return{
-            guanLiFlag:true,
-            shouCFlag:false
+            guanLiFlag:true, // 宝贝管理
+            shouCFlag:false,
+            ShouCJShopList:[],  // 收藏夹商品
+
+            storeFlag:true,  // 商店管理
+            guanzhuFlag:false,
+            baoBFlag:true,  // 默认展示宝贝
+            guanZhuStoreList:[]  // 关注的商店
           }
       },
+      created(){
+        this.getShouCJShop();  // 宝贝
+        this.getGuanZhuStore()  // 商店
+      },
       methods:{
-          show(){
+        /**
+         *    宝贝
+         */
+        show(){
             this.guanLiFlag = !this.guanLiFlag;
             this.shouCFlag = !this.shouCFlag
+          },
+        // 从数据库获取收藏夹商品
+        async getShouCJShop(){
+            const res = await this.$axios.get('/getshoucangjia',this.model);
+            if (res.status === 200) {
+              this.ShouCJShopList = res.data
+            }
+        },
+        // 取消收藏商品
+        removeShouCJShop(i){
+            this.ShouCJShopList.some((value, index, array) => {
+              if (i === index) {
+                // console.log(array[i])  // 找到对应的商品
+                const removeShopObj = array[i];
+                this.$axios.post('/removeshoucangjiashop',removeShopObj).then((res) => {
+                  // 删除收藏夹商品
+                });
+                this.ShouCJShopList.splice(i,1) // 界面未刷新时删除商品
+              }
+            })
+        },
+        /**
+         *   商店
+         */
+        storeshow(){
+            this.storeFlag = !this.storeFlag;
+            this.guanzhuFlag = !this.guanzhuFlag
+        },
+        goBaby(){  // 宝贝
+            this.baoBFlag = true
+        },
+        goStore(){  // 商店
+            this.baoBFlag = false
+        },
+      //   从数据库获得收藏的商店
+        async getGuanZhuStore(){
+          const res = await this.$axios.get('/getguanzhustore',this.model);
+            // console.log(res)
+          if (res.status === 200){
+            this.guanZhuStoreList = res.data
           }
+        },
+      //  取消关注
+        removeGuanZhu(i){
+          this.guanZhuStoreList.some((value, index, array) => {
+            if (i === index) {
+              const removeObj = array[i];
+              this.$axios.post('/removeGuanZhuStore',removeObj).then((res) => {
+                //将要删除的数据传给后台
+              });
+              // 从界面删除
+              this.guanZhuStoreList.splice(i,1)
+            }
+          })
+        }
       }
     }
 </script>
@@ -74,8 +157,9 @@
     margin: 30px 8px 20px;
   }
   .shoucangjia-all p{
-    color: black;
-    font-size: 15px;
+    color: #ff88cc;
+    font-size: 17px;
+    font-weight: bold;
   }
   .shouchangjia-img img{
     width: 130px;
@@ -106,5 +190,16 @@
   .shoucangjia-list{
     overflow: hidden;
     margin-top: 5px;
+  }
+  ul{
+    list-style: none;
+    padding: 0;
+  }
+  .type{
+    text-align: center;
+  }
+  .type a{
+    font-size: 15px;
+    color: #ff5053;
   }
 </style>

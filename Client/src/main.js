@@ -32,6 +32,12 @@ import 'vue-photo-preview/dist/skin.css'
 
 Vue.config.productionTip = false;
 
+// 进入页面显示在最顶部
+// 全局后置钩子
+Router.afterEach((to,from,next) => {
+  window.scrollTo(0,0)
+});
+
 // 引用mintUI组件
 Vue.use(MintUi);
 // 引用vue-photo-preview
