@@ -51,6 +51,7 @@
      <img id="erweima" src="https://img.alicdn.com/tfs/TB17e_6e3MPMeJjy1XcXXXpppXa-380-382.png" alt="有好货">
        <p id="subtitle">
          与品质生活不期而遇</p>
+     <!--   id : 41-46 -->
      <ul class="goods-list">
        <router-link v-for="item in youhaohuoList" :key="item.id" :to="'/home/youhaohuo/'+item.id">
          <div class="img">
@@ -71,6 +72,7 @@
         <p class="subtitle">献给聪明可爱的你
           <router-link class="router-link" to="/home/aiguangjie">更多<i class="icon iconfont icon-icon_A"></i></router-link>
         </p>
+<!--        id: 1-6 （不用）-->
         <ul class="shops-list">
           <li class="shop-li" v-for="item in aiguangjieList" :key="item.id" @click="goInfo">
             <div class="shop-img">
@@ -91,6 +93,7 @@
     </div>
     <div class="end">
       <div class="layer">
+<!--        id:230-259 -->
         <h3 class="hd">猜你喜欢</h3>
         <hr>
         <div class="like-list">

@@ -1,4 +1,5 @@
 <template>
+<!--   id : 41-46 -->
     <div class="youhaohuo-container">
       <div class="youhaohuo-top">
         <div class="top-img">
@@ -13,7 +14,7 @@
             <p class="content-tuijian">来自潮品达人爱美丽的夏老师推荐：</p>
             <p class="youhaohuo-title">{{ youHaoHuoInfoShop.subtitle }}</p>
             <p class="content-action">
-              <span class="youhaohuo-price"><span>￥</span>338</span>
+              <span class="youhaohuo-price"><span>￥</span>{{ youHaoHuoInfoShop.price }}</span>
              <router-link :to="'/home/buyyouhaohuoshop/'+youHaoHuoInfoShop.id"> <span class="youhaohuo-view">查看宝贝<i class="icon iconfont icon-youjiantou"></i>
               </span></router-link>
               <span class="youhaohuo-like">
@@ -26,6 +27,7 @@
       <div class="youhaohuo-middle">
         <p>你可能还喜欢</p>
       </div>
+<!--      id: 50-139;flag:41-46 -->
       <div class="youhaohuo-bottom">
         <ul class="youhaohuo-list">
           <router-link class="youhaohuo-item" v-for="item in youHaoHuoInfoBottomList" :key="item.id" :to="'/home/buyyouhaohuoinfoshop/'+item.id">
@@ -74,7 +76,6 @@
           },
         async getYouHaoHuoBottom(){
             const res = await this.$axios.get('/getyouhaohuoinfobottom/'+this.id,this.model);
-          // console.log(res)
           if (res.status === 200) {
             this.youHaoHuoInfoBottomList = res.data
           }

@@ -1,4 +1,5 @@
 <template>
+<!--  id: 1-40 -->
     <div class="shops-list">
       <router-link class="shops-item" v-for="item in shopList" :key="item.id" :to="'/home/shopinfo/'+item.id" tag="div">
       <img :src="item.img_url">

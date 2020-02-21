@@ -4,7 +4,7 @@ import Router from 'vue-router'
 // 引入Tabbar 组件
 import Home from '../components/Tabbar/Home'
 import Search from '../components/Tabbar/Search'
-import ShopCar from '../components/Tabbar/Shopcar'
+import ShopCar from '../components/Tabbar/shopCar/Shopcar'
 import Mine from '../components/Tabbar/Mine'
 
 //引入 lgge 组件
@@ -17,7 +17,7 @@ import ShouCangJia from '../components/lgge/shoucangjia'
 
 // 引入 lgge-info 组件
 import PhotoInfo from '../components/lgge/lgge-info/photoinfo'
-import ShopInfo from '../components/lgge/lgge-info/shopinfo'
+import ShopInfo from '../components/lgge/lgge-info/shopInfo/shopinfo'
 import ShopDescription from '../components/lgge/lgge-info/shopdescription'
 import ShopComment from '../components/lgge/lgge-info/shopcomment'
 

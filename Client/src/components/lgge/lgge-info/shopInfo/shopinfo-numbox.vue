@@ -7,7 +7,7 @@
 </template>
 
 <script>
-  import mui from '../../../lib/mui/js/mui'
+  import mui from '../../../../lib/mui/js/mui'
     export default {
       name: "shopinfo-numbox",
       // 初始化数字选择框

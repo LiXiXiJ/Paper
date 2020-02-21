@@ -60,7 +60,7 @@
 </template>
 
 <script>
-  import Numbox from '../publicCom/shopinfo-numbox'
+  import Numbox from './shopinfo-numbox'
 
     export default {
         name: "shopinfo",

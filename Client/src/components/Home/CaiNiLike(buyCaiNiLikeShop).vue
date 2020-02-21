@@ -1,5 +1,14 @@
 <template>
+<!--  id:230-259 -->
   <div class="buy-container">
+    <!--      钩子函数实现半场动画 -->
+    <transition
+      @before-enter="beforeEnter"
+      @enter="enter"
+      @after-enter="afterEnter">
+      <div class="ball" id="ball" v-if="ballFlag"></div>
+    </transition>
+
     <div class="buy-img">
       <img :src="BuyCaiNiLikeShop.img_url">
     </div>
@@ -16,10 +25,10 @@
     <div class="buy-numbox">
       <p>
         <span>购买数量</span>
-        <NumBox></NumBox>
+        <NumBox @getCount = getNumBoxCount></NumBox>
       </p>
       <p>
-        <mt-button type="danger" size="small">加入购物车</mt-button>
+        <mt-button type="danger" size="small" @click="addToShopCar">加入购物车</mt-button>
         <mt-button type="primary" size="small">立即购买</mt-button>
       </p>
     </div>
@@ -34,20 +43,23 @@
 </template>
 
 <script>
-  import NumBox from './PublicCom/homebuy-numbox'
+  import NumBox from './PublicCom/NumBox/YouHaoHuoShop-NumBox'
     export default {
         name: "CaiNiLike",
       components:{NumBox},
       data(){
           return{
             id:this.$route.params.id,
-            BuyCaiNiLikeShop:{}
+            BuyCaiNiLikeShop:{},
+            ballFlag:false,
+            numBoxCount:0
           }
       },
       created(){
         this.getBuyCaiNiLikeShop()
       },
       methods:{
+          // 获取商品信息
           async getBuyCaiNiLikeShop(){
             const res = await this.$axios.get('/getbuycainilikeshop/'+this.id,this.model);
             // console.log(res.data)
@@ -55,6 +67,7 @@
               this.BuyCaiNiLikeShop = res.data
             }
           },
+        // 收藏商品
         guanZhu(){
           const shouCJObj = {
             id:this.BuyCaiNiLikeShop.id,
@@ -63,11 +76,58 @@
             price:this.BuyCaiNiLikeShop.like_price
           };
           this.$axios.post('/postshoucangjia',shouCJObj).then((res) => {
-            // 收藏商品
+            //
           })
         },
+        // 去评论页
         GoComment(){
             this.$router.push('/home/caiNiLikeShopComment/'+this.id)
+        },
+        // 钩子函数实现半场动画
+        beforeEnter(el){
+          el.style.transform = "translate(0,0)"
+        },
+        enter(el){
+          el.offsetWidth;
+          // 问题：不同分辨率下小球移动距离
+          //  解决：不能把位置横纵坐标写死，根据不同情况动态计算这个坐标值
+          //     先得到徽标的横纵坐标再得到小球的横纵坐标，然后横坐标值求差，纵坐标值求差，结果就是要移动的距离
+
+          //  小球横纵坐标
+          const ballLeft = document.getElementById('ball').getBoundingClientRect().left;
+          const ballTop = document.getElementById('ball').getBoundingClientRect().top;
+          // console.log(ballLeft)
+          // console.log(ballTop)
+          //  徽标横纵坐标
+          const shopCarLeft = document.getElementById('shopCar').getBoundingClientRect().left;
+          const shopCarTop = document.getElementById('shopCar').getBoundingClientRect().top;
+          // console.log(shopCarLeft)
+          // console.log(shopCarTop)
+          const X = shopCarLeft - ballLeft;
+          const Y = shopCarTop - ballTop;
+          // console.log(X,Y)
+          el.style.transform = `translate(${X}px,${Y}px)`;
+          //  cubic-bezier贝塞尔曲线
+          el.style.transition = "all 0.6s cubic-bezier(.05,.66,1,.45)";
+        },
+        afterEnter(el){
+          this.ballFlag = false
+        },
+        // 从子组件获取 numbox 值
+        getNumBoxCount(count){
+          this.numBoxCount = count
+          console.log(this.numBoxCount)
+        },
+        // 加入购物车
+        addToShopCar(){
+          this.ballFlag = !this.ballFlag;
+          const caiNiLikeShop = {
+            id:this.id,
+            count:this.numBoxCount,
+            price:this.BuyCaiNiLikeShop.like_price,
+            selected:true
+          };
+          this.$store.commit('caiNiLikeSelectShopAddToShopCar',caiNiLikeShop)
         }
       }
     }
@@ -158,5 +218,15 @@
     border-radius: 15px;
     float: right;
     padding-top: 3px;
+  }
+  .ball{
+    width: 15px;
+    height: 15px;
+    border-radius: 50%;
+    background-color: red;
+    position: absolute;
+    z-index: 999;
+    top: 513px;
+    left: 151px;
   }
 </style>

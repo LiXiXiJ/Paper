@@ -26,6 +26,9 @@ const youhaohuoSchema = new mongoose.Schema({
     num:{
         type:Number,
         required:true
+    },
+    price:{
+        type:Number
     }
 });
 

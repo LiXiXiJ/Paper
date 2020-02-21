@@ -29,11 +29,7 @@
             searchList:[],
             newList:[],
             keywords:'', // 搜索关键字
-            flag:false,
-            province:null,
-            city:null,
-            provinces:[],
-            cities:[]
+            flag:false
           }
       },
       created(){

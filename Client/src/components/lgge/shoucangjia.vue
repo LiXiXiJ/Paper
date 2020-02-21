@@ -1,7 +1,8 @@
 <template>
     <div class="shoucangjia-container">
       <div class="type">
-        <a href="javascript:;" @click="goBaby">宝贝</a>&nbsp;&nbsp;|&nbsp;&nbsp;<a href="javascript:;" @click="goStore">商店</a>
+        <a href="javascript:;" :class="[baoBFlag ? 'YES' : 'NO']" @click="goBaby">宝贝</a>&nbsp;&nbsp;|&nbsp;&nbsp;
+        <a href="javascript:;" :class="[baoBFlag ? 'NO' : 'YES']" @click="goStore">商店</a>
       </div>
       <div v-if="baoBFlag">
         <div class="guanli">
@@ -198,8 +199,14 @@
   .type{
     text-align: center;
   }
-  .type a{
+  /* class 绑定设置元素样式 */
+  .YES{
+    color: #1eadfb;
+    font-weight: bold;
+    font-size: 17px;
+  }
+  .NO{
+    color: #8f8f94;
     font-size: 15px;
-    color: #ff5053;
   }
 </style>
