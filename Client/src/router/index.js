@@ -1,6 +1,12 @@
 import Vue from 'vue'
 import Router from 'vue-router'
 
+// 解决路由跳转报错
+const originalPush = Router.prototype.push;
+Router.prototype.push = function push(location) {
+  return originalPush.call(this, location).catch(err => err)
+};
+
 // 引入Tabbar 组件
 import Home from '../components/Tabbar/Home'
 import Search from '../components/Tabbar/Search'
@@ -36,13 +42,25 @@ import aiGuangJieInfoShopComment from '../components/Home/PublicCom/comment/aiGu
 import caiNiLikeShopComment from '../components/Home/PublicCom/comment/caiNiLikeShopComment'
 
 //引入Mine组件
-import register from '../components/Mine/register'
-import login from '../components/Mine/login'
-import About from '../components/Mine/About'
-import Current from '../components/Mine/Current'
-import News from '../components/Mine/News'
-import Privacy from '../components/Mine/Privacy'
-import Trouble from '../components/Mine/Trouble'
+import setting from '../components/Mine/setting/setting'
+import register from '../components/Mine/setting/settings/register'
+import login from '../components/Mine/setting/settings/login'
+import About from '../components/Mine/setting/settings/About'
+import Current from '../components/Mine/setting/settings/Current'
+import News from '../components/Mine/setting/settings/News'
+import Privacy from '../components/Mine/setting/settings/Privacy'
+import Address from '../components/Mine/setting/settings/Address'
+import addAddress from '../components/Mine/setting/settings/address/addAddress'
+
+// allOrder
+import AllOrder from '../components/Mine/allOrder/allOrder'
+import All from '../components/Mine/allOrder/all'
+import Payment from '../components/Mine/allOrder/payment'
+import WaitFaHuo from '../components/Mine/allOrder/waitfahuo'
+import ToBoReceived from '../components/Mine/allOrder/tobereceived'
+
+//GoPay
+import GoPay from '../components/GoPay/goPay'
 
 Vue.use(Router);
 
@@ -82,13 +100,26 @@ export default new Router({
     { path:'/home/aiGuangJieInfoShopComment/:id',component:aiGuangJieInfoShopComment},
     { path:'/home/caiNiLikeShopComment/:id',component:caiNiLikeShopComment},
 
+    { path:'/mine/setting',component:setting },
     { path:'/mine/register',component:register },
     { path:'/mine/login',component:login },
     { path:'/mine/about',component:About },
     { path:'/mine/current',component:Current},
     { path:'/mine/news',component:News },
     { path:'/mine/privacy',component:Privacy },
-    { path:'/mine/trouble',component:Trouble }
+    { path:'/mine/address',component:Address },
+    { path:'/mine/addAddress',component:addAddress},
+    { path:'/mine/allorder',
+      component:AllOrder,
+        children:[
+          { path:'/mine/allorder/all',component:All },
+          { path:'/mine/allorder/payment',component:Payment },
+          { path:'/mine/allorder/waitfahuo',component:WaitFaHuo },
+          { path:'/mine/allorder/tobereceived',component:ToBoReceived },
+        ]
+    },
+
+    { path:'/gopay',component:GoPay }
   ],
   // 设置路由高亮，覆盖原来默认的类 router-link-active
   linkActiveClass:'mui-active'

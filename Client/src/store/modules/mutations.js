@@ -148,5 +148,24 @@ export default {
       }
     });
     localStorage.setItem('shopCar',JSON.stringify(state.shopCar))
+  },
+
+//  保存USER到store中
+  saveUser(state,userObj) {
+    state.user = userObj;
+    // 持久化
+    localStorage.setItem('user',JSON.stringify(state.user))
+  },
+
+//  保存收货地址到store中
+  saveAddressToStore(state,storeAddress) {
+    state.address = storeAddress
+  //  持久化
+    localStorage.setItem('address',JSON.stringify(state.address))
+  },
+
+//  退出登录
+backLogin(state) {
+    state.user = ''
   }
 }

@@ -33,14 +33,16 @@ Register.post('/register',async (req,res) => {
     if (userNameData.length !== 0) {  // length = 0 时表示没找到,还没被注册
        return res.send('1')  // 1表示已经被注册
     }
-    res.send('0');
+    // 注册成功
     const User = {
         username:req.body.username,
         password:md5(md5(req.body.password)),
         tel:req.body.tel,
         passwordPay:md5(md5(req.body.passwordPay))
     };
-    console.log(User)
+    // 存到数据库
+    const model = await user.create(User);
+    res.send('0')
 });
 
 module.exports = Register;

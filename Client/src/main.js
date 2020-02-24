@@ -23,15 +23,21 @@ import 'mint-ui/lib/style.css'
 import './lib/mui/js/mui'
 import './lib/mui/css/mui.min.css'
 import './lib/mui/css/icons-extra.css'
-// 注册mintUI组件
+// 注册 mintUI 组件
 Vue.use(MintUi);
-// 注册vue-photo-preview
-Vue.use(preview);
 
 //导入vue-photo-preview 缩略图组件
 import preview from 'vue-photo-preview'
 import 'vue-photo-preview/dist/vue-photo-preview'
 import 'vue-photo-preview/dist/skin.css'
+// 注册vue-photo-preview
+Vue.use(preview);
+
+// 按需引入element-ui
+import { Upload } from 'element-ui';
+import 'element-ui/lib/theme-chalk/index.css'
+Vue.prototype.$ELEMENT = { size: 'small', zIndex: 3000 };
+Vue.use(Upload);
 
 Vue.config.productionTip = false;
 

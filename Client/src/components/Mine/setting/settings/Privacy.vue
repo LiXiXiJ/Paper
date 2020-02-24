@@ -4,10 +4,8 @@
       <div class="mui-scroll-wrapper">
         <div class="mui-scroll">
           <ul class="mui-table-view">
-            <li class="mui-table-view-divider">通讯录</li>
             <mt-switch class="swi"></mt-switch><li class="mui-table-view-cell">
               加我为朋友时需要验证
-
             </li>
           </ul>
           <ul class="mui-table-view">
@@ -63,5 +61,8 @@
     height: 30px;
     float: right;
     margin-top: 5px;
+  }
+  .mui-table-view{
+    margin-top: 41px;
   }
 </style>

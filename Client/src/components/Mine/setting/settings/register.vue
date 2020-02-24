@@ -4,7 +4,7 @@
       <div class="register">
         <h1>注&nbsp;册</h1>
       </div>
-      <form class="mui-input-group" action="/register" method="post">
+      <form class="mui-input-group">
         <div class="mui-input-row">
           <label>用户名</label>
           <input type="text" class="mui-input-clear mui-input" placeholder="请输入用户名" name="username" v-model="username">
@@ -45,9 +45,9 @@
         username:'',//用户名
         password:'',//密码
         tel:'',//电话
-        code:'',//验证码
+        code:'',// 填写的验证码
         passwordPay:'',// 支付密码
-        num:'', // 验证码
+        num:'', // 获取到的验证码
         isRun:false, // 默认显示‘获取验证码’
         runTime:30 // 倒计时时间
       }

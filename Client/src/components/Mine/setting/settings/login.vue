@@ -39,7 +39,7 @@
         </p>
         <div class="other-login">
           <p> ——&nbsp;&nbsp;&nbsp;&nbsp;其他登录方式&nbsp;&nbsp;&nbsp;&nbsp;——</p>
-          <img @click="showqq" src="../../lib/img/other/QQ.png"><img @click="showqq" id="middle" src="../../lib/img/other/WeChat.png"><img @click="showqq" src="../../lib/img/other/pay.png">
+          <img @click="showqq" src="../../../../lib/img/other/QQ.png"><img @click="showqq" id="middle" src="../../../../lib/img/other/WeChat.png"><img @click="showqq" src="../../../../lib/img/other/pay.png">
         </div>
         <div class="link-area">
           <router-link id="none" to="/mine/register">还没有账号？点击注册</router-link>
@@ -59,8 +59,8 @@
         username:'',
         password:'',
         tel:'',
-        code:'',
-        num:'',
+        code:'', //  填入的
+        num:'',  // 获取到的
         isRun:false,
         RunTime:30
       }
@@ -75,6 +75,7 @@
       showqq(){
         Toast('抱歉，该功能正在测试中！')
       },
+      // 发送验证码
       sendCode(){
         if (this.isRun) return ;
         if (this.tel.length === 0) {
@@ -102,7 +103,7 @@
           this.num = res.data;
           setTimeout(() => {
             Toast({
-              message: `尊敬的${this.tel}用户，您的手机验证码是${this.num}`,
+              message: `尊敬的${ this.tel }用户，您的手机验证码是${ this.num }`,
               position: 'top',
               iconClass:'mui-icon mui-icon-email'
             })
@@ -110,6 +111,7 @@
         })
       },
       Login(){
+        // 密码登录
         if (this.flag) {
           if (this.username.length === 0) {
             return Toast('用户名不能为空')
@@ -121,15 +123,22 @@
             username: this.username,
             password: this.password
           };
-          this.$axios.post('/login',UserObj).then((res) => {
+          this.$axios.post('/loginmima',UserObj).then((res) => {
             if (res.data === 0) {
               return Toast('用户名还未注册，请先注册')
             }
             if (res.data === 1) {
               return Toast('密码错误，请重新输入')
             }
+            // console.log(res.data)  //token/USER
+            // 登录成功
+            const userObj = res.data.USER;
+            this.$store.commit('saveUser',userObj);  // 将用户对象保存到store中
+            localStorage.setItem('token',res.data.token);  // 保存token
+            this.$router.push('/home')  // 跳转
           })
         }
+        // 验证码登录
         if (!this.flag) {
           if (this.tel.length === 0) {
             return Toast('请输入手机号')
@@ -144,8 +153,16 @@
           if (parseInt(this.num) !== parseInt(this.code)) {
             return Toast('验证码错误，请重新输入')
           }
-          this.$axios.post('/login').then((res) => {
-
+          const telObj = {
+            tel:this.tel
+          };
+          this.$axios.post('/loginyanzhma',telObj).then((res) => {
+            //console.log(res.data)  //token/USER
+            // 登录成功
+            const userObj = res.data.USER;
+            this.$store.commit('saveUser',userObj);  // 将用户对象保存到store中
+            localStorage.setItem('token',res.data.token);  // 保存token
+            this.$router.push('/home')  // 跳转
           })
         }
       }
@@ -157,8 +174,8 @@
   body {
     width: 100%;
     height: 100%;
-    margin: 0px;
-    padding: 0px;
+    margin: 0;
+    padding: 0;
     background-color: white;
   }
   .mui-content{

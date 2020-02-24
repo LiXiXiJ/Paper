@@ -6,6 +6,7 @@
  */
 const express = require('express');
 const bodyParser = require('body-parser');
+const path = require('path');
 
 //引入路由
 const Lunbotu = require('./routes/Home/Lunbotu');
@@ -42,6 +43,9 @@ const ShouCangJia = require('./routes/lgge/ShouCangJia');
 const WeiTaoGuanZhuStore = require('./routes/lgge/WeiTaoGuanZhuStore');
 const Register = require('./routes/User/Register');
 const Login = require('./routes/User/Login');
+const PasswordPay = require('./routes/User/PasswordPay');
+const AddAddress = require('./routes/User/AddAddress');
+const UploadAvatar = require('./routes/User/UploadAvatar');
 
 const app = express();
 
@@ -53,6 +57,10 @@ app.use(express.json());
 
 // 引入数据库连接文件
 require('./util/db')(app);
+
+// 开放静态文件
+app.use('/Pubilc/',express.static('./Public/'));
+
 
 // 路由挂载到 APP 服务中
 app.use(Lunbotu);
@@ -89,6 +97,9 @@ app.use(ShouCangJia);
 app.use(WeiTaoGuanZhuStore);
 app.use(Register);
 app.use(Login);
+app.use(PasswordPay);
+app.use(AddAddress);
+app.use(UploadAvatar);
 
 app.listen(3000,() => {
     console.log('server is running on port 3000')

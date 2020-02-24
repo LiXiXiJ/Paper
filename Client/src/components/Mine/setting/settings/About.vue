@@ -13,7 +13,7 @@
         </li>
       </ul>
     </div>
-    <p><img src="../../lib/img/other/warning.png">该功能正在测试中！请耐心等待。</p>
+    <p><i class="icon iconfont icon-jinggao" style="color: red"></i>&nbsp;该功能正在测试中！请耐心等待。</p>
   </div>
 </template>
 

@@ -22,6 +22,9 @@ const userSchema = new mongoose.Schema({
     passwordPay:{
         type:String,
         required:true
+    },
+    avatar:{
+        type:String
     }
 });
 

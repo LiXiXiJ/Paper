@@ -9,12 +9,9 @@
                 多语言
               </li>
             </ul>
-
             <ul class="mui-table-view">
               <mt-switch id="swi"></mt-switch><li class="mui-table-view-cell">
                 听筒模式
-
-
               </li>
             </ul>
             <ul class="mui-table-view">
@@ -26,7 +23,7 @@
         </div>
       </div>
     </div>
-    <p><img src="../../lib/img/other/warning.png">该功能正在测试中！请耐心等待。</p>
+    <p style="text-align: center;margin-top: 10px"><i class="icon iconfont icon-jinggao" style="color: red"></i>&nbsp;该功能正在测试中！请耐心等待。</p>
   </div>
 </template>
 
@@ -37,6 +34,9 @@
 </script>
 
 <style>
+  body{
+    background-color: white;
+  }
   #cur{
     margin-top: 80px;
   }

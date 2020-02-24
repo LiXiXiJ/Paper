@@ -123,7 +123,7 @@
   }
   .search-container input{
     background-color: white;
-    border: #26A2FF solid 2px;
+    border: rgb(255,102,0) solid 2px;
     border-radius: 17px 0 0 17px;
     border-right: none;
     width: 40%;
@@ -133,7 +133,7 @@
   #search-btn{
     width: 15%;
     border-radius: 0 17px 17px 0;
-    background-color: #0062cc;
+    background-color: rgb(246,131,67);
     border: none;
     height: 34px;
     margin: 20px 10% 0 0;

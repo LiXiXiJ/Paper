@@ -37,7 +37,7 @@
                 <span class="red">￥{{ $store.getters.getShopCarAllPriceAndCount.PRICE }}</span>（不含运费）
               </p>
             </div>
-            <mt-button type="danger" class="but">去结算</mt-button>
+            <mt-button type="danger" class="but" @click="ToGoPay">去支付</mt-button>
           </div>
         </div>
       </div>
@@ -122,10 +122,16 @@
 
           this.$store.commit('removeFromShopCar',id)  // 删store中
         },
+
         // 改变商品选中
         selectedChange(id,newVal) {
           console.log(id+'---'+newVal)
           this.$store.commit('updateShopCarSelected',{ id , selected : newVal })
+        },
+
+      //  去支付页面
+        ToGoPay(){
+            this.$router.push('/gopay')
         }
       }
     }
