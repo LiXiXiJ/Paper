@@ -1,6 +1,6 @@
 <template>
     <div class="payment-container">
-      <div class="mui-card">
+      <div class="mui-card" v-if="paymentItem">
         <div class="mui-card-content">
           <div class="mui-card-content-inner">
             <div class="payment">
@@ -13,12 +13,43 @@
           </div>
         </div>
       </div>
+      <div class="mui-card" v-else v-for="(item,i) in paymentItem" :key="item.id">
+        <div class="mui-card-content">
+          <div class="mui-card-content-inner">
+            <div class="all1">
+              <p class="all-name">奔波儿灞旗舰店</p>
+              <p class="succ">待付款</p>
+            </div>
+            <div class="all-2">
+              <div class="all-img">
+                <img :src="item.img_url">
+              </div>
+              <div class="all-title">
+                <p class="all2-title">{{ item.title }}</p>
+                <p class="all2-price">单价：<span>￥</span>{{ item.like_price || item.price }}</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <MoreLike></MoreLike>
     </div>
 </template>
 
 <script>
+  import MoreLike from '../../PubliComponents/MoreLike'
     export default {
-        name: "payment"
+        name: "payment",
+      components:{MoreLike},
+      data(){
+          return{
+            paymentItem:[]
+          }
+      },
+      created(){
+      },
+      methods: {
+      }
     }
 </script>
 
@@ -38,5 +69,9 @@
   }
   .payment2{
     padding: 5px 80px;
+  }
+  .all2-price{
+    margin: 0;
+    padding-top: 15px;
   }
 </style>

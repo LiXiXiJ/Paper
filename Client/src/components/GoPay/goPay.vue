@@ -85,7 +85,7 @@
           this.submitOrFlag = true
         },
 
-      //  取消支付，跳转并将商品添加到待支付
+      //  取消支付
         addToPayment(){
           this.$router.push('/mine/allorder/payment');
         },
@@ -109,10 +109,10 @@
             if (res.data === 0) {
               return Toast('支付密码错误,请重新输入')
             }
+            // 支付成功，跳转到待发货
+            Toast('支付成功');
+            this.$router.push('/mine/allorder/waitfahuo')
           });
-          // 支付成功，跳转到待发货
-          Toast('支付成功');
-          this.$router.push('/mine/allorder/waitfahuo')
         }
       }
     }

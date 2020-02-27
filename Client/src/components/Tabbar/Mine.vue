@@ -21,12 +21,36 @@
     <div class="mui-card">
       <div class="mui-card-content">
         <div class="mui-card-content-inner" id="tubiao">
-          <a href="javascript:;" @click="goPayment"><i class="icon iconfont icon-daifukuan1" style="font-size: 40px;color: rgb(255,102,0)"></i></a>
-          <a href="javascript:;" @click="goWaitFaHuo"><i class="icon iconfont icon-iocn-zhonggao_daifahuo" style="font-size: 40px;color: rgb(255,102,0)"></i></a>
-          <a href="javascript:;" @click="goTobeReceived"><i class="icon iconfont icon-daishouhuo" style="font-size: 40px;color: rgb(255,102,0)"></i></a>
+          <a href="javascript:;" @click="goAllOrder"><i class="icon iconfont icon-daifukuan1" style="font-size: 40px;color: rgb(255,102,0)"></i></a>
+          <a href="javascript:;" @click="goAllOrder"><i class="icon iconfont icon-iocn-zhonggao_daifahuo" style="font-size: 40px;color: rgb(255,102,0)"></i></a>
+          <a href="javascript:;" @click="goAllOrder"><i class="icon iconfont icon-daishouhuo" style="font-size: 40px;color: rgb(255,102,0)"></i></a>
           <a href="javascript:;"><i class="icon iconfont icon-tuikuanshouhou" style="font-size: 40px;color: rgb(255,102,0)"></i></a>
         </div>
         <p class="tubiao-say"><span>待付款</span><span>待发货</span><span>待收货</span><span>退款/售后</span></p>
+      </div>
+    </div>
+
+    <br>
+
+    <div class="mui-card">
+      <div class="mui-card-header">
+        <p class="gju">必备工具</p>
+      </div>
+      <div class="mui-card-content">
+        <div class="mui-card-content-inner">
+          <div class="firstline">
+            <i class="icon iconfont icon-return" style="font-size: 40px;color: red"></i>
+            <i class="icon iconfont icon-sheng" style="font-size:40px;color: #26A2FF"></i>
+            <i class="icon iconfont icon-qian" style="font-size: 30px;color: #cf2d28"></i>
+          </div>
+          <p class="gju-p"><span>每日返现</span><span>省钱消消消</span><span>闲置换钱</span></p>
+          <div class="firstline">
+            <i class="icon iconfont icon-wodekuaidi-" style="font-size: 40px;color: blue"></i>
+            <i class="icon iconfont icon-00000" style="font-size:40px;color: green"></i>
+            <i class="icon iconfont icon-huanfu" style="font-size: 30px;color: blueviolet"></i>
+          </div>
+          <p class="gju-p2"><span>我的快递</span><span>天天农场</span><span>主体换肤</span></p>
+        </div>
       </div>
     </div>
   </div>
@@ -46,16 +70,7 @@
       },
     //  跳转到全部订单页面
       goAllOrder(){
-        this.$router.push('/mine/allorder')
-      },
-      goPayment(){
-        this.$router.push('/mine/allorder/payment')
-      },
-      goWaitFaHuo(){
-        this.$router.push('/mine/allorder/waitfahuo')
-      },
-      goTobeReceived(){
-        this.$router.push('/mine/allorder/tobereceived')
+        this.$router.push('/mine/allorder/all')
       }
     }
   }
@@ -101,5 +116,34 @@
     display: flex;
     justify-content: space-between;
     padding: 0 15px;
+    color: #222222;
+  }
+  .gju{
+    color: #222222;
+    font-size: 14px;
+    margin: 0;
+  }
+  .firstline{
+    display: flex;
+    justify-content: space-between;
+    padding: 0 10px;
+  }
+  .gju-p{
+    display: flex;
+    justify-content: space-between;
+    padding-top: 15px;
+    color: #222222;
+    font-size: 13px;
+    padding-left: 5px;
+    margin: 0 0 10px;
+  }
+  .gju-p2{
+    display: flex;
+    justify-content: space-between;
+    padding-top: 15px;
+    color: #222222;
+    font-size: 13px;
+    padding-left: 5px;
+    margin: 0;
   }
 </style>

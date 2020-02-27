@@ -118,4 +118,8 @@ export default {
     overflow: hidden;
     text-overflow: ellipsis;
   }
+  /* 设置路由高亮 */
+  .router-link-active{
+    color: #007aff !important;
+  }
 </style>

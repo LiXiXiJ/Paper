@@ -120,7 +120,5 @@ export default new Router({
     },
 
     { path:'/gopay',component:GoPay }
-  ],
-  // 设置路由高亮，覆盖原来默认的类 router-link-active
-  linkActiveClass:'mui-active'
+  ]
 })

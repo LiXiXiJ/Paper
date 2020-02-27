@@ -1,6 +1,6 @@
 <template>
     <div class="tobereceived-container">
-      <div class="mui-card" v-if="receivedList">
+      <div class="mui-card" v-if="receivedItem">
         <div class="mui-card-content">
           <div class="mui-card-content-inner">
             <div class="payment">
@@ -17,31 +17,38 @@
         <div class="mui-card-content">
           <div class="mui-card-content-inner">
             <div class="all1">
-              <p class="all-name">古树视频点</p>
+              <p class="all-name">奔波儿灞旗舰店</p>
               <p class="succ">卖家已发货</p>
             </div>
             <div class="all-2">
               <div class="all-img">
-                <img src="https://p.ssl.qhimg.com/dmfd/125_71_75/t0163eb3ad01c9cbfbe.webp?size=889x521">
+                <img :src="item.img_url">
               </div>
               <div class="all-title">
-                <p class="all2-title">12222222222222222222</p>
-                <p class="all2-price">合计：<span>￥</span>26.2</p>
+                <p class="all2-title">{{ item.title }}</p>
+                <p class="all2-price">单价：<span>￥</span>{{ item.like_price || item.price }}</p>
               </div>
             </div>
           </div>
         </div>
       </div>
+      <MoreLike></MoreLike>
     </div>
 </template>
 
 <script>
+  import MoreLike from '../../PubliComponents/MoreLike'
     export default {
         name: "tobereceived",
+      components:{MoreLike},
       data(){
           return{
-            receivedList:''
+            receivedItem:[]
           }
+      },
+      created(){
+      },
+      methods:{
       }
     }
 </script>

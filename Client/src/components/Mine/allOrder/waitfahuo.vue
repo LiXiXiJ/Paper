@@ -13,12 +13,15 @@
           </div>
         </div>
       </div>
+      <MoreLike></MoreLike>
     </div>
 </template>
 
 <script>
+  import MoreLike from '../../PubliComponents/MoreLike'
     export default {
-        name: "waitfahuo"
+        name: "waitfahuo",
+      components:{MoreLike}
     }
 </script>
 

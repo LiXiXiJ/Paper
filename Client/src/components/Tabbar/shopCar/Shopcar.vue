@@ -1,61 +1,81 @@
 <template>
   <div class="shopCar-container">
     <div class="shop-list">
-<!--      商品项区域 -->
-      <div class="mui-card" v-for="(item,i) in shopCarList" :key="item.id">
-        <div class="mui-card-content">
-          <div class="mui-card-content-inner">
-            <mt-switch class="shopCar-switch"
-              v-model="$store.getters.getShopCarSelected[item.id]"
-              @change="selectedChange(item.id,$store.getters.getShopCarSelected[item.id])">
-            </mt-switch>
-            <img :src="item.img_url">
-            <div class="shop-info">
-              <h1>{{ item.title }}</h1>
-              <p>
-                <span class="shop-price">￥{{ item.now_price || item.price || item.like_price }}</span>
-                <!--  从购物车中获取商品数量同步到NumBox中
-                      先创建一个空对象，然后循环购物车中所有商品，把商品的id作为对象的属性名，
-                        count 值作为对象的属性值 如：{ 1 : 3 , 2 : 3 } -->
-                <NumBox :Count = "$store.getters.getShopCarSelectCount[item.id]" :shopId = "item.id"></NumBox>
-                <button class="shopCar-button" @click="remove(item.id,i)">取消订单</button>
-              </p>
-            </div>
-          </div>
+      <div class="empty-shopCar" v-if="!shopCarList.length">
+        <div class="c1">
+          <i class="icon iconfont icon-kong" style="font-size: 50px;color:white"></i>
+        </div>
+        <div class="c2">
+          <p class="c-p1">购物车竟然是空的</p>
+          <p class="c-p2">再忙，也要记得买点什么犒赏自己~</p>
+        </div>
+        <div class="c3">
+          <mt-button plain="plain" size="small" @click="goShopList">去逛逛</mt-button>
         </div>
       </div>
-<!--      <p> {{ $store.getters.getShopCarSelectCount }}</p>-->
 
-<!--       结算区域 -->
-      <div class="mui-card">
-        <div class="mui-card-content">
-          <div class="mui-card-content-inner" id="jiesuan">
-            <div class="left">
-              <p>订单详情</p>
-              <p>
-                已选 <span class="red">{{ $store.getters.getShopCarAllPriceAndCount.COUNT }}</span> 件，总价
-                <span class="red">￥{{ $store.getters.getShopCarAllPriceAndCount.PRICE }}</span>（不含运费）
-              </p>
+      <div v-else>
+        <!--      商品项区域 -->
+        <div class="mui-card" v-for="(item,i) in shopCarList" :key="item.id">
+          <div class="mui-card-content">
+            <div class="mui-card-content-inner">
+              <mt-switch class="shopCar-switch"
+                         v-model="$store.getters.getShopCarSelected[item.id]"
+                         @change="selectedChange(item.id,$store.getters.getShopCarSelected[item.id])">
+              </mt-switch>
+              <img :src="item.img_url">
+              <div class="shop-info">
+                <h1>{{ item.title }}</h1>
+                <p>
+                  <span class="shop-price">￥{{ item.now_price || item.price || item.like_price }}</span>
+                  <!--  从购物车中获取商品数量同步到NumBox中
+                        先创建一个空对象，然后循环购物车中所有商品，把商品的id作为对象的属性名，
+                          count 值作为对象的属性值 如：{ 1 : 3 , 2 : 3 } -->
+                  <NumBox :Count = "$store.getters.getShopCarSelectCount[item.id]" :shopId = "item.id"></NumBox>
+                  <button class="shopCar-button" @click="remove(item.id,i)">取消订单</button>
+                </p>
+              </div>
             </div>
-            <mt-button type="danger" class="but" @click="ToGoPay">去支付</mt-button>
           </div>
         </div>
+        <!--      <p> {{ $store.getters.getShopCarSelectCount }}</p>-->
+
+        <!--       结算区域 -->
+        <div class="mui-card">
+          <div class="mui-card-content">
+            <div class="mui-card-content-inner" id="jiesuan">
+              <div class="left">
+                <p>订单详情</p>
+                <p>
+                  已选 <span class="red">{{ $store.getters.getShopCarAllPriceAndCount.COUNT }}</span> 件，总价
+                  <span class="red">￥{{ $store.getters.getShopCarAllPriceAndCount.PRICE }}</span>（不含运费）
+                </p>
+              </div>
+              <mt-button type="danger" class="but" @click="ToGoPay">去支付</mt-button>
+            </div>
+          </div>
+        </div>
+        <p>{{ $store.getters.getShopCarSelected }}</p>
       </div>
-    </div>
-    <p>{{ $store.getters.getShopCarSelected }}</p>
+      <MoreLike></MoreLike>
+     </div>
   </div>
 </template>
 
 <script>
   import NumBox from './shopcar-numbox'
+  import MoreLike from '../../PubliComponents/MoreLike'
     export default {
         name: "Shopcar",
+      components:{
+          NumBox,
+          MoreLike
+        },
       data(){
           return{
             shopCarList:[]
           }
       },
-      components:{NumBox},
       created() {
           this.getShopCarList()
       },
@@ -132,6 +152,10 @@
       //  去支付页面
         ToGoPay(){
             this.$router.push('/gopay')
+        },
+        // 去商品列表页面
+        goShopList(){
+            this.$router.push('/home/shoplist')
         }
       }
     }
@@ -181,5 +205,30 @@
   .left .red{
     color: red;
     font-size: 15px;
+  }
+  .c1{
+    width: 70px;
+    height: 70px;
+    margin: 50px auto 20px;
+    background-color: rgb(255,102,0);
+    border-radius: 50%;
+    padding-top: 24px;
+    padding-left: 10px;
+  }
+  .c2{
+    margin: 0 82px;
+  }
+  .c-p1{
+    padding: 0 51px;
+    margin: 0 0 10px;
+    color: #222222;
+    font-size: 15px;
+  }
+  .c-p2{
+    font-size: 12px;
+    padding: 0 7%;
+  }
+  .c3{
+    margin: 0 41%;
   }
 </style>

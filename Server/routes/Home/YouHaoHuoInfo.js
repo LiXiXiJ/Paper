@@ -22,4 +22,10 @@ YouHaoHuoInfo.get('/getyouhaohuoinfobottom/:flag',async (req,res) => {
     res.send(model)
 });
 
+// 购物车页面  - 你可能还喜欢数据
+YouHaoHuoInfo.get('/getyouhaohuoinfobottom',async (req,res) => {
+    const model = await youhaohuoinfo.find(req.body);
+    res.send(model)
+});
+
 module.exports = YouHaoHuoInfo;

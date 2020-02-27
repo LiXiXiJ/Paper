@@ -13,31 +13,36 @@
           </div>
         </div>
       </div>
-      <div class="mui-card" v-else>
-        <div class="mui-card-content">
-          <div class="mui-card-content-inner">
-            <div class="all1">
-              <p class="all-name">古树视频点</p>
-              <p class="succ">交易成功</p>
-            </div>
-            <div class="all-2">
-              <div class="all-img">
-                <img src="https://p.ssl.qhimg.com/dmfd/125_71_75/t0163eb3ad01c9cbfbe.webp?size=889x521">
+      <div v-else>
+        <div class="mui-card">
+          <div class="mui-card-content">
+            <div class="mui-card-content-inner">
+              <div class="all1">
+                <p class="all-name">古树视频点</p>
+                <p class="succ">交易成功</p>
               </div>
-              <div class="all-title">
-                <p class="all2-title">12222222222222222222</p>
-                <p class="all2-price">合计：<span>￥</span>26.2</p>
+              <div class="all-2">
+                <div class="all-img">
+                  <img src="https://p.ssl.qhimg.com/dmfd/125_71_75/t0163eb3ad01c9cbfbe.webp?size=889x521">
+                </div>
+                <div class="all-title">
+                  <p class="all2-title">12222222222222222222</p>
+                  <p class="all2-price">合计：<span>￥</span>26.2</p>
+                </div>
               </div>
             </div>
           </div>
         </div>
       </div>
+      <MoreLike></MoreLike>
     </div>
 </template>
 
 <script>
+  import MoreLike from '../../PubliComponents/MoreLike'
     export default {
         name: "all",
+      components:{MoreLike},
       data(){
           return{
             orderList:''

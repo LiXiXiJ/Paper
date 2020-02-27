@@ -165,7 +165,9 @@ export default {
   },
 
 //  退出登录
-backLogin(state) {
-    state.user = ''
+  backLogin(state) {
+    state.user = {}
   }
 }
+
+

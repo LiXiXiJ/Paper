@@ -60,7 +60,7 @@
          // 清空token
          localStorage.setItem('token','');
          // 清空user
-         localStorage.setItem('user','');
+         localStorage.setItem('user','{}');
          // store 中清空user
          this.$store.commit('backLogin');
          // 跳转

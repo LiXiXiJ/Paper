@@ -1,8 +1,8 @@
 <template>
   <div class="search-container">
-      <input type="search"  placeholder="请开始你的表演" v-model="keywords" @click="changeFalse">
-      <input type="button" value="走你" id="search-btn" @click="changeTrue">
-  <div class="search-list" v-show="flag">
+    <input type="search" placeholder="请输入搜索内容" v-model="keywords">
+
+  <div class="search-list">
     <router-link class="search-item" v-for="item in search(keywords)" :key="item.id" :to="'/home/shopinfo/'+item.id">
       <img :src="item.img_url">
       <h1 class="title">{{ item.title }}</h1>
@@ -28,8 +28,7 @@
           return{
             searchList:[],
             newList:[],
-            keywords:'', // 搜索关键字
-            flag:false
+            keywords:'' // 搜索关键字
           }
       },
       created(){
@@ -53,13 +52,6 @@
             }
           });
           return newList
-        },
-        //  实现点击搜索显示功能
-        changeTrue(){  // 点击按钮显示搜到的内容
-          this.flag = true
-        },
-        changeFalse(){  // 点击搜索框隐藏
-          this.flag = false
         }
       }
     }
@@ -122,22 +114,13 @@
     height: 15px;
   }
   .search-container input{
+    margin: 15px 23% 0;
+    width: 200px;
+    height: 20px;
     background-color: white;
-    border: rgb(255,102,0) solid 2px;
-    border-radius: 17px 0 0 17px;
-    border-right: none;
-    width: 40%;
-    margin: 20px 0 0 23%;
-    font-size: 13px
-  }
-  #search-btn{
-    width: 15%;
-    border-radius: 0 17px 17px 0;
-    background-color: rgb(246,131,67);
-    border: none;
-    height: 34px;
-    margin: 20px 10% 0 0;
-    color: white;
+    border: #B5B5B5 1px solid;
+    border-radius: 10px;
+    font-size: 12px;
   }
   #hotsell{
     color: red;

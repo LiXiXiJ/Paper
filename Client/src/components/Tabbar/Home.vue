@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="Home-container">
 <!--    轮播图区域 -->
 <!--    auto 毫秒值 -->
     <mt-swipe :auto="3000">
