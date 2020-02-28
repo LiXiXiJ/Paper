@@ -8,7 +8,7 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const path = require('path');
 
-//引入路由
+//引入 用户 路由
 const Lunbotu = require('./routes/Home/Lunbotu');
 const Lunbotu2 = require('./routes/Home/Lunbotu2');
 const YouHaoHuo = require('./routes/Home/YouHaoHuo');
@@ -46,6 +46,11 @@ const Login = require('./routes/User/Login');
 const PasswordPay = require('./routes/User/PasswordPay');
 const AddAddress = require('./routes/User/AddAddress');
 const UploadAvatar = require('./routes/User/UploadAvatar');
+
+
+// 管理员 路由
+const RegLog = require('./routes/Admin/Reg&Log/Reg&Log');
+
 
 const app = express();
 
@@ -100,6 +105,9 @@ app.use(Login);
 app.use(PasswordPay);
 app.use(AddAddress);
 app.use(UploadAvatar);
+
+// 管理员
+app.use(RegLog);
 
 app.listen(3000,() => {
     console.log('server is running on port 3000')
