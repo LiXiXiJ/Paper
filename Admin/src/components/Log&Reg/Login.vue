@@ -92,7 +92,7 @@
             // 去登录
             setTimeout(() => {
               this.backLogin()
-            },2000)
+            },3000)
           })
         },
       // 登录
@@ -129,7 +129,9 @@
           // 保存用户到store中
           this.$store.commit('saveAdminUser',adminUser);
           // 跳转到主页
-          this.$router.push('/Home')
+          setTimeout(() => {
+            this.$router.push('/Home')
+          },3000);
         })
       }
     }

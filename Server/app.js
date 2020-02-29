@@ -50,6 +50,10 @@ const UploadAvatar = require('./routes/User/UploadAvatar');
 
 // 管理员 路由
 const RegLog = require('./routes/Admin/Reg&Log/Reg&Log');
+const AdminShopList = require('./routes/Admin/ShopSetting/ShopList/ShopLists');
+const AdminYouHaoHuoInfo = require('./routes/Admin/ShopSetting/YouHaoHuo/YouHaoHuos');
+const AdminAiGuangJie = require('./routes/Admin/ShopSetting/AiGuangJie/AiGuangJies');
+const AdminCaiNiLike = require('./routes/Admin/ShopSetting/CaiNiLike/CaiNiLikes');
 
 
 const app = express();
@@ -108,6 +112,10 @@ app.use(UploadAvatar);
 
 // 管理员
 app.use(RegLog);
+app.use(AdminShopList);
+app.use(AdminYouHaoHuoInfo);
+app.use(AdminAiGuangJie);
+app.use(AdminCaiNiLike);
 
 app.listen(3000,() => {
     console.log('server is running on port 3000')
