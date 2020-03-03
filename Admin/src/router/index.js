@@ -32,6 +32,7 @@ export default new VueRouter({
       path:'/home',
       component:Home,
       children:[
+
         { path:'/shop/shoplist',component:ShopLists },
         { path:'/shop/youhaohuo',component:YouHaoHuos },
         { path:'/shop/aiguangjie',component:AiGuangJies },
