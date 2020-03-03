@@ -1,6 +1,6 @@
 <template>
     <div class="all-container">
-      <div class="mui-card" v-if="orderList">
+      <div class="mui-card">
         <div class="mui-card-content">
           <div class="mui-card-content-inner">
             <div class="payment">
@@ -9,27 +9,6 @@
             <div class="payment2">
               <p class="payment-p">您还没有相关的订单</p>
               <p>可以去看看有哪些想买的</p>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div v-else>
-        <div class="mui-card">
-          <div class="mui-card-content">
-            <div class="mui-card-content-inner">
-              <div class="all1">
-                <p class="all-name">古树视频点</p>
-                <p class="succ">交易成功</p>
-              </div>
-              <div class="all-2">
-                <div class="all-img">
-                  <img src="https://p.ssl.qhimg.com/dmfd/125_71_75/t0163eb3ad01c9cbfbe.webp?size=889x521">
-                </div>
-                <div class="all-title">
-                  <p class="all2-title">12222222222222222222</p>
-                  <p class="all2-price">合计：<span>￥</span>26.2</p>
-                </div>
-              </div>
             </div>
           </div>
         </div>
@@ -45,7 +24,7 @@
       components:{MoreLike},
       data(){
           return{
-            orderList:''
+
           }
       }
     }

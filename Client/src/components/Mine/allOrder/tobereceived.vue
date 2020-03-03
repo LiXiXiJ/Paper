@@ -1,6 +1,6 @@
 <template>
     <div class="tobereceived-container">
-      <div class="mui-card" v-if="receivedItem">
+      <div class="mui-card" v-if="receivedList.length === 0">
         <div class="mui-card-content">
           <div class="mui-card-content-inner">
             <div class="payment">
@@ -13,25 +13,19 @@
           </div>
         </div>
       </div>
-      <div class="mui-card" v-else>
-        <div class="mui-card-content">
-          <div class="mui-card-content-inner">
-            <div class="all1">
-              <p class="all-name">奔波儿灞旗舰店</p>
-              <p class="succ">卖家已发货</p>
-            </div>
-            <div class="all-2">
-              <div class="all-img">
-                <img :src="item.img_url">
-              </div>
-              <div class="all-title">
-                <p class="all2-title">{{ item.title }}</p>
-                <p class="all2-price">单价：<span>￥</span>{{ item.like_price || item.price }}</p>
-              </div>
-            </div>
-          </div>
+      <div class="block" style="margin: 30px 0 10px 20px" v-for="(item,i) in receivedList">
+        <el-timeline :reverse="true">
+          <el-timeline-item
+            :key="item._id"
+            :timestamp="item.Date | dataFilter">
+            卖家已从{{item.faHuoAddress}}发货
+          </el-timeline-item>
+        </el-timeline>
+        <div style="margin: 20px 66px">
+          <el-button type="primary" size="small" @click="receive(i)">确认收货</el-button>
         </div>
       </div>
+
       <MoreLike></MoreLike>
     </div>
 </template>
@@ -42,13 +36,33 @@
         name: "tobereceived",
       components:{MoreLike},
       data(){
-          return{
-            receivedItem:[]
-          }
+          return {
+             receivedList:[]
+            }
       },
       created(){
+          this.ClientGetYiFaHuo()
       },
-      methods:{
+      methods: {
+          // 获取待收货订单
+          async ClientGetYiFaHuo(){
+            const res = await this.$axios.get('/getyifahuoorder',this.model);
+            if (res.status === 200) {
+              this.receivedList = res.data
+            }
+          },
+        // 确认收货删除订单
+        receive(i){
+            this.receivedList.some((item,index) => {
+              if (i === index) {
+                this.$axios.post('/removeyifahuoorder',item).then(res => {
+                  //
+                });
+                // 界面删除
+                this.receivedList.splice(i,1)
+              }
+            })
+        }
       }
     }
 </script>

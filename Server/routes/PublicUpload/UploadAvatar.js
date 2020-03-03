@@ -5,7 +5,6 @@
 
 // 获取上传文件，但 express 本身没有能力获取到上传文件的数据，因此要一个中间件专门用来获取上传文件 npm i multer
 const express = require('express');
-const path = require('path');
 
 const multer= require('multer');
 // 上传中间件，dest：目标地址  __dirname：当前文件所在文件夹，绝对地址,将来上传的图片二进制文件保存在此处

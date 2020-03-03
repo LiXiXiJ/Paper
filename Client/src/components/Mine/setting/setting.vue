@@ -57,16 +57,14 @@
     methods:{
       // 退出登录
       backLogin(){
-         // 清空token
-         localStorage.setItem('token','');
-         // 清空user
-         localStorage.setItem('user','{}');
+        // 清空token
+        localStorage.setItem('token','');
          // store 中清空user
          this.$store.commit('backLogin');
          // 跳转
          this.$router.push('/mine')
       },
-    //
+    // 上传头像
       afterUpload(res){
         console.log(res)
         this.imageUrl = res.url

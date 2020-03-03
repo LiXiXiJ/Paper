@@ -159,14 +159,22 @@ export default {
 
 //  保存收货地址到store中
   saveAddressToStore(state,storeAddress) {
-    state.address = storeAddress
+    state.address = storeAddress;
   //  持久化
     localStorage.setItem('address',JSON.stringify(state.address))
   },
 
+//  清空购物车
+  OrderRemoveShopCar(state) {
+    state.shopCar = [];
+    localStorage.setItem('shopCar','[]')
+  },
+
 //  退出登录
   backLogin(state) {
-    state.user = {}
+    state.user = {};
+    // 清空user
+    localStorage.setItem('user','{}');
   }
 }
 

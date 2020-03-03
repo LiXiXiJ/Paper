@@ -68,9 +68,9 @@
       goSetting(){
         this.$router.push('/mine/setting')
       },
-    //  跳转到全部订单页面
+    //  跳转到订单页面
       goAllOrder(){
-        this.$router.push('/mine/allorder/all')
+        this.$router.push('/mine/allorder/payment')
       }
     }
   }

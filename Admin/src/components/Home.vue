@@ -10,7 +10,7 @@
             <el-menu-item index="/order/yifahuo">已发货</el-menu-item>
           </el-menu-item-group>
           <el-menu-item-group title="未付款">
-            <el-menu-item index="/order/payment">未付款</el-menu-item>
+            <el-menu-item index="/order/payment">待付款</el-menu-item>
           </el-menu-item-group>
         </el-submenu>
         <el-submenu index="2">
@@ -25,9 +25,9 @@
           </el-submenu>
         </el-submenu>
         <el-submenu index="3">
-          <template slot="title"><i class="el-icon-setting"></i>财务统计</template>
+          <template slot="title"><i class="el-icon-setting"></i>订单统计</template>
           <el-menu-item-group>
-            <el-menu-item index="/affairs/allcount">总成交量</el-menu-item>
+            <el-menu-item index="/affairs/allcount">订单统计</el-menu-item>
           </el-menu-item-group>
         </el-submenu>
       </el-menu>

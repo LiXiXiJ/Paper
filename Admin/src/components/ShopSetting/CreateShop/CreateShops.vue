@@ -24,17 +24,16 @@
           <div class="upload">
             <el-upload
               class="avatar-uploader"
-              action="https://jsonplaceholder.typicode.com/posts/"
+              :action="/api/ + 'upload'"
               :show-file-list="false"
-              :on-success="handleAvatarSuccess"
-              :before-upload="beforeAvatarUpload">
+              :on-success="afterUpload">
               <img v-if="imageUrl" :src="imageUrl" class="avatar">
               <i v-else class="el-icon-plus avatar-uploader-icon"></i>
             </el-upload>
           </div>
         </div>
         <div class="create-button">
-          <el-button type="primary">立即提交</el-button>
+          <el-button type="primary" @click="submit">立即提交</el-button>
         </div>
       </div>
     </div>
@@ -54,20 +53,49 @@
         };
       },
       methods: {
-        handleAvatarSuccess(res, file) {
-          this.imageUrl = URL.createObjectURL(file.raw);
+        //  上传图片后回显
+        afterUpload(res) {
+          // console.log(res)
+          this.imageUrl = res.url
         },
-        beforeAvatarUpload(file) {
-          const isJPG = file.type === 'image/jpeg';
-          const isLt2M = file.size / 1024 / 1024 < 2;
-
-          if (!isJPG) {
-            this.$message.error('上传头像图片只能是 JPG 格式!');
+        submit(){
+          if (this.title.length === 0) {
+            return this.$alert('请填写商品名称', {
+              confirmButtonText: '确定'
+            });
           }
-          if (!isLt2M) {
-            this.$message.error('上传头像图片大小不能超过 2MB!');
+          if (this.price.length === 0) {
+            return this.$alert('请填写商品价格', {
+              confirmButtonText: '确定'
+            });
           }
-          return isJPG && isLt2M;
+          if (this.id.length === 0) {
+            return this.$alert('请填写商品型号ID', {
+              confirmButtonText: '确定'
+            });
+          }
+          if (this.imageUrl.length === 0) {
+            return this.$alert('请上传商品图片', {
+              confirmButtonText: '确定'
+            });
+          }
+          const ShopObj = {
+            id:this.id,
+            title:this.title,
+            like_price:this.price,
+            like_sales:this.sales,
+            img_url:this.imageUrl,
+            content:this.content
+          };
+          // console.log(ShopObj)
+          this.$axios.post('/admincreateshop',ShopObj).then(res => {
+            if (res.data === 1) {
+              this.$alert('添加商品成功', {
+                confirmButtonText: '确定'
+              });
+            }
+            this.title = this.price = this.id = this.imageUrl = this.content = ''
+          })
         }
       }
     }

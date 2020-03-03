@@ -49,8 +49,8 @@
           </div>
           <div class="mui-card-content">
             <div class="mui-card-content-inner">
-              <p class="submitor1">{{ $store.getters.getShopCarAllPriceAndCount.PRICE }}</p>
-              <p class="submitor2">支付方式 <span>余额支付</span></p>
+              <p class="submitor1">￥{{ $store.getters.getShopCarAllPriceAndCount.PRICE }}</p>
+              <p class="submitor2"><span>银行卡支付</span>支付方式 </p>
             </div>
           </div>
           <div class="mui-card-footer">
@@ -85,12 +85,25 @@
           this.submitOrFlag = true
         },
 
-      //  取消支付
+      //  取消支付  --> 待付款订单
         addToPayment(){
-          this.$router.push('/mine/allorder/payment');
+          // 跳转到我的订单待付款
+          setTimeout(() => {
+            this.$router.push('/mine/allorder/payment');
+          },1500);
+          // 将待付款订单保存到数据库
+          const paymentObj = {
+            shop:this.$store.getters.getShopCarSelectCount,
+            address:this.$store.state.address
+          };
+          this.$axios.post('/postpaymentorder',paymentObj).then(res => {
+            //
+          });
+          // 清空购物车
+          this.$store.commit('OrderRemoveShopCar');
         },
 
-      //  支付
+      //  支付 --> 待发货订单
         toPay(){
           if (this.password.length === 0 || this.password.length < 6) {
             return Toast('支付密码错误')
@@ -111,8 +124,22 @@
             }
             // 支付成功，跳转到待发货
             Toast('支付成功');
-            this.$router.push('/mine/allorder/waitfahuo')
+            setTimeout(() => {
+              this.$router.push('/mine/allorder/waitfahuo')
+            },1500);
           });
+
+          // 保存待发货订单到数据库中
+          const waitFaHuoObj = {
+            shop:this.$store.getters.getShopCarSelectCount,
+            address:this.$store.state.address,
+            allPrice:this.$store.getters.getShopCarAllPriceAndCount.PRICE
+          };
+          this.$axios.post('/postwaitfahuoorder',waitFaHuoObj,async (req,res) => {
+            //
+          });
+          // 清空购物车
+          this.$store.commit('OrderRemoveShopCar')
         }
       }
     }
@@ -224,12 +251,14 @@
   .submitor2{
     margin: 20px 5px 5px;
     font-size: 14px;
+    min-height: 40px;
   }
   .submitor2 span{
     display: inline-block;
     color: #26A2FF;
-    padding-left: 60%;
+    padding-left: 55%;
     font-size: 15px;
+    float: right;
   }
   .submitor3{
     margin: 0;

@@ -1,7 +1,7 @@
 <template>
   <div class="shopCar-container">
     <div class="shop-list">
-      <div class="empty-shopCar" v-if="!shopCarList.length">
+      <div class="empty-shopCar" v-if="this.$store.state.shopCar.length===0">
         <div class="c1">
           <i class="icon iconfont icon-kong" style="font-size: 50px;color:white"></i>
         </div>
@@ -78,6 +78,7 @@
       },
       created() {
           this.getShopCarList()
+          // console.log(this.$store.state.shopCar.length===0)
       },
       methods:{
           // 获取到 store 中所有的商品
@@ -123,7 +124,7 @@
                   if (res.status === 200) {
                     this.shopCarList = this.shopCarList.concat(res.data)
                   }
-                } else if (shopId >= 230 && shopId <= 259) {
+                } else if (shopId >= 230) {
                   const res = await this.$axios.get('/getcainilikeshopcar/'+shopId,this.model);
                   // console.log(res)
                   if (res.status === 200) {

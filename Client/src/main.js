@@ -33,11 +33,11 @@ import 'vue-photo-preview/dist/skin.css'
 // 注册vue-photo-preview
 Vue.use(preview);
 
-// 按需引入element-ui
-import { Upload } from 'element-ui';
+// 引入element-ui
+import elementui from 'element-ui'
 import 'element-ui/lib/theme-chalk/index.css'
 Vue.prototype.$ELEMENT = { size: 'small', zIndex: 3000 };
-Vue.use(Upload);
+Vue.use(elementui);
 
 Vue.config.productionTip = false;
 

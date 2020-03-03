@@ -2,10 +2,10 @@
     <div class="allOrder-container">
       <div class="order-header">
         <p class="order-p">
-          <a href="javascript:;" :class="[AllFlag ? 'order-a2' : 'order-a1']" @click="goAll">全部</a>
           <a href="javascript:;" :class="[PaymentFlag ? 'order-a2' : 'order-a1']" @click="goPayment">待付款</a>
           <a href="javascript:;" :class="[WaitFaHuoFlag ? 'order-a2' : 'order-a1']" @click="goWaitFaHuo">待发货</a>
           <a href="javascript:;" :class="[TobeReceivedFlag ? 'order-a2' : 'order-a1']" @click="goTobeReceived">待收货</a>
+          <a href="javascript:;" :class="[AllFlag ? 'order-a2' : 'order-a1']" @click="goAll">退款/售后</a>
         </p>
       </div>
       <router-view></router-view>
@@ -24,7 +24,7 @@
           }
       },
       created(){
-        this.goAll()
+        this.goPayment()
       },
       methods:{
         goAll(){

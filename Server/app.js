@@ -6,7 +6,6 @@
  */
 const express = require('express');
 const bodyParser = require('body-parser');
-const path = require('path');
 
 //引入 用户 路由
 const Lunbotu = require('./routes/Home/Lunbotu');
@@ -45,7 +44,7 @@ const Register = require('./routes/User/Register');
 const Login = require('./routes/User/Login');
 const PasswordPay = require('./routes/User/PasswordPay');
 const AddAddress = require('./routes/User/AddAddress');
-const UploadAvatar = require('./routes/User/UploadAvatar');
+const UploadAvatar = require('./routes/PublicUpload/UploadAvatar');
 
 
 // 管理员 路由
@@ -54,6 +53,15 @@ const AdminShopList = require('./routes/Admin/ShopSetting/ShopList/ShopLists');
 const AdminYouHaoHuoInfo = require('./routes/Admin/ShopSetting/YouHaoHuo/YouHaoHuos');
 const AdminAiGuangJie = require('./routes/Admin/ShopSetting/AiGuangJie/AiGuangJies');
 const AdminCaiNiLike = require('./routes/Admin/ShopSetting/CaiNiLike/CaiNiLikes');
+const CreateShops = require('./routes/Admin/ShopSetting/CreateShop/CreateShops');
+
+// 订单
+const WaitFaHuoOrder = require('./routes/OrderSetting/WaitFaHuoOrder');
+const YiFaHuoOrder = require('./routes/OrderSetting/YiFaHuoOrder');
+const PaymentOrder = require('./routes/OrderSetting/PaymentOrder');
+
+// 订单统计
+const AffairsAllCount = require('./routes/Admin/DingDanAllCount/AffairsAllCount');
 
 
 const app = express();
@@ -68,7 +76,7 @@ app.use(express.json());
 require('./util/db')(app);
 
 // 开放静态文件
-app.use('/Pubilc/',express.static('./Public/'));
+app.use('/Public/',express.static('./Public/'));
 
 
 // 路由挂载到 APP 服务中
@@ -116,6 +124,15 @@ app.use(AdminShopList);
 app.use(AdminYouHaoHuoInfo);
 app.use(AdminAiGuangJie);
 app.use(AdminCaiNiLike);
+app.use(CreateShops);
+
+// 订单
+app.use(WaitFaHuoOrder);
+app.use(YiFaHuoOrder);
+app.use(PaymentOrder);
+
+// 订单统计
+app.use(AffairsAllCount);
 
 app.listen(3000,() => {
     console.log('server is running on port 3000')
