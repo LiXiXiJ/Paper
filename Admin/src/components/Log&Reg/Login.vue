@@ -16,7 +16,7 @@
         <el-button type="primary" @click="Login">登录</el-button>
       </div>
       <div class="regist">
-        <p>还没有账号...？<a href="javascript:;" @click="GoRegister">点击注册</a></p>
+        <p>还没有账号...？<a href="javascript:;" @click.prevent="GoRegister">点击注册</a></p>
       </div>
     </div>
 

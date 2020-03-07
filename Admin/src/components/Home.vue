@@ -108,9 +108,9 @@
   .span1{
     display: inline-block;
     height: 60px;
-    margin-right: 40%;
+    margin-right: 35%;
     color: white;
-    font-size: 20px;
+    font-size: 30px;
     font-weight: bold;
     font-family: 楷体;
   }

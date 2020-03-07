@@ -24,8 +24,8 @@ Vue.use(VueRouter);
 
 export default new VueRouter({
   routes:[
-    // 重定向，一进去就展示 home 组件
-    { path:'/',redirect: '/home'},
+    // 重定向，一进去就展示 login 组件
+    { path:'/',redirect: '/home/login'},
     { path:'/home/login',component:Login },
 
     {
