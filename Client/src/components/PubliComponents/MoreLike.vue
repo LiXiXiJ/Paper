@@ -5,7 +5,11 @@
       </div>
       <div class="youhaohuo-bottom">
         <ul class="youhaohuo-list">
-          <router-link class="youhaohuo-item" v-for="item in youHaoHuoInfoBottomList" :key="item.id" :to="'/home/buyyouhaohuoinfoshop/'+item.id">
+          <router-link class="youhaohuo-item" v-for="item in youHaoHuoInfoBottomList" :key="item.id" :to="'/home/buyyouhaohuoinfoshop/'+item.id"
+                       v-loading="loading"
+                       element-loading-text="拼命加载中"
+                       element-loading-spinner="el-icon-loading"
+                       element-loading-background="rgba(0,0,0,0.9)">
             <a href="javascript:;">
               <img :src="item.img_url">
               <h3>
@@ -32,11 +36,13 @@
         name: "MoreLike",
       data(){
           return{
-            youHaoHuoInfoBottomList:[]
+            youHaoHuoInfoBottomList:[],
+            loading:true
           }
       },
       created(){
-        this.getYouHaoHuoBottom()
+        this.getYouHaoHuoBottom();
+        this.LoadingChange()
       },
       methods:{
         // 请求 你可能还喜欢 数据
@@ -45,6 +51,11 @@
           if (res.status === 200) {
             this.youHaoHuoInfoBottomList = res.data
           }
+        },
+        LoadingChange(){
+          setTimeout(() => {
+            this.loading = false
+          },2000)
         }
       }
     }

@@ -46,7 +46,8 @@
       },
       created(){
         // this.num = localStorage.getItem('weiWeiTaoZanNum');
-        this.getWeiWeiTao()
+        this.getWeiWeiTao();
+        this.openFullScreen()
       },
       methods:{
         //   点赞功能
@@ -99,6 +100,17 @@
           this.$axios.post('/postweitaoguanzhustore',storeObj).then((res) => {
             // 向后台传递数据
           })
+        },
+        openFullScreen() {
+          const loading = this.$loading({
+            lock: true,
+            text: 'Loading',
+            spinner: 'el-icon-loading',
+            background: 'rgba(0, 0, 0, 0.9)'
+          });
+          setTimeout(() => {
+            loading.close();
+          }, 2000);
         }
       }
     }

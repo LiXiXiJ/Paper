@@ -7,8 +7,11 @@
       <div class="mine-name">
         <p>{{ !$store.state.user.username ? `请登录` : `${$store.state.user.username}` }}</p>
       </div>
-      <div class="mine-img">
+      <div class="mine-img" v-if="!flag">
         <img src="../../lib/img/other/header.png">
+      </div>
+      <div class="mine-img" v-else>
+        <img :src="avatarUrl">
       </div>
     </div>
     <div class="mui-card">
@@ -61,6 +64,9 @@
     name: "Mine",
     data(){
       return{
+        flag:this.$store.state.user.username,  // flag 为登录状态
+        // 头像
+        avatarUrl:localStorage.getItem('avatar')
       }
     },
     methods:{

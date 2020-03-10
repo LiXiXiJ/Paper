@@ -1,7 +1,11 @@
 <template>
 <!--  id: 1-40 -->
     <div class="shops-list">
-      <router-link class="shops-item" v-for="item in shopList" :key="item.id" :to="'/home/shopinfo/'+item.id" tag="div">
+      <router-link class="shops-item" v-for="item in shopList" :key="item.id" :to="'/home/shopinfo/'+item.id" tag="div"
+                   v-loading="loading"
+                   element-loading-text="拼命加载中"
+                   element-loading-spinner="el-icon-loading"
+                   element-loading-background="rgba(0,0,0,0.9)">
       <img :src="item.img_url">
       <h1 class="title">{{ item.title }}</h1>
       <div class="shops-info">
@@ -25,11 +29,13 @@
       data() {
         return {
           page_index:1,
-          shopList:[]
+          shopList:[],
+          loading:true
         };
       },
       created(){
-          this.getShopList()
+          this.getShopList();
+          this.LoadingChange()
       },
       methods: {
           async getShopList(){
@@ -39,10 +45,15 @@
               this.shopList = this.shopList.concat(res.data)
             }
           },
-        getMore(){
-            // 加载更多，让页数增一，执行getShopList（）方法，请求第二页数据
-            this.page_index++;
-            this.getShopList();
+        getMore() {
+          // 加载更多，让页数增一，执行getShopList（）方法，请求第二页数据
+          this.page_index++;
+          this.getShopList();
+        },
+        LoadingChange(){
+          setTimeout(() => {
+            this.loading = false
+          },2000)
         }
       }
     }

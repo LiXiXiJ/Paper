@@ -36,6 +36,7 @@
       created(){
         this.getphotolistcate();
         this.getPhotoListByCateId(0); //刚进入页面就请求所有数据
+        this.openFullScreen()
       },
       mounted() {
         mui('.mui-scroll-wrapper').scroll({
@@ -58,6 +59,17 @@
           if (res.status === 200) {
             this.list = res.data
           }
+        },
+        openFullScreen() {
+          const loading = this.$loading({
+            lock: true,
+            text: 'Loading',
+            spinner: 'el-icon-loading',
+            background: 'rgba(0, 0, 0, 0.9)'
+          });
+          setTimeout(() => {
+            loading.close();
+          }, 2000);
         }
       }
     }

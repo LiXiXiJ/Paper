@@ -19,29 +19,31 @@
         </div>
       </li>
     </ul>
-    <ul class="mui-table-view mui-table-view-chevron">
-      <li class="mui-table-view-cell">
-        <router-link to="/mine/address" class="mui-navigate-right">我的收货地址</router-link>
-      </li>
-    </ul>
-    <ul class="mui-table-view mui-table-view-chevron">
-      <li class="mui-table-view-cell">
-        <router-link to="/mine/news" class="mui-navigate-right">新消息通知</router-link>
-      </li>
-      <li class="mui-table-view-cell">
-        <router-link to="/mine/privacy" class="mui-navigate-right">隐私与安全</router-link>
-      </li>
-      <li class="mui-table-view-cell">
-        <router-link to="/mine/current" class="mui-navigate-right">通用</router-link>
-      </li>
-    </ul>
-    <ul class="mui-table-view mui-table-view-chevron">
-      <li class="mui-table-view-cell">
-        <router-link to="/mine/about" class="mui-navigate-right">关于购物系统 <i class="mui-pull-right update">V10.10.10</i></router-link>
-      </li>
-    </ul>
-    <br>
-        <mt-button type="danger" size="large" @click="backLogin" v-show="flag">退出登录</mt-button>
+    <div v-show="flag">
+      <ul class="mui-table-view mui-table-view-chevron">
+        <li class="mui-table-view-cell">
+          <router-link to="/mine/address" class="mui-navigate-right">我的收货地址</router-link>
+        </li>
+      </ul>
+      <ul class="mui-table-view mui-table-view-chevron">
+        <li class="mui-table-view-cell">
+          <router-link to="/mine/news" class="mui-navigate-right">新消息通知</router-link>
+        </li>
+        <li class="mui-table-view-cell">
+          <router-link to="/mine/privacy" class="mui-navigate-right">隐私与安全</router-link>
+        </li>
+        <li class="mui-table-view-cell">
+          <router-link to="/mine/current" class="mui-navigate-right">通用</router-link>
+        </li>
+      </ul>
+      <ul class="mui-table-view mui-table-view-chevron">
+        <li class="mui-table-view-cell">
+          <router-link to="/mine/about" class="mui-navigate-right">关于购物系统 <i class="mui-pull-right update">V1.1.1</i></router-link>
+        </li>
+      </ul>
+      <br>
+      <mt-button type="danger" size="large" @click="backLogin">退出登录</mt-button>
+    </div>
   </div>
 </template>
 
@@ -51,7 +53,7 @@
     data(){
       return{
         flag:this.$store.state.user.username,  // 默认登录状态
-        imageUrl: ''
+        imageUrl: localStorage.getItem('avatar')
       }
     },
     methods:{
@@ -67,7 +69,8 @@
     // 上传头像
       afterUpload(res){
         console.log(res)
-        this.imageUrl = res.url
+        // 头像保存到localStorage
+        localStorage.setItem('avatar',res.url)
       }
     }
   }

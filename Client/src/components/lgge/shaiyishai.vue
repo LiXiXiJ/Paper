@@ -38,7 +38,8 @@
       },
       created(){
           // this.num = localStorage.getItem('shaiYiShaiZanNum');
-          this.getShaiYiShai()
+          this.getShaiYiShai();
+          this.openFullScreen()
       },
       methods:{
         dianZan(i){  // 实现点赞功能
@@ -69,12 +70,24 @@
           // 赞 保存在本地
           // localStorage.setItem('shaiYiShaiZanNum',this.num)
         },
+        // 获取数据
         async getShaiYiShai(){
           const res = await this.$axios.get('/getshaiyishai',this.model);
           // console.log(res)
           if (res.status === 200) {
             this.shaiYiShaiList = res.data
           }
+        },
+        openFullScreen() {
+          const loading = this.$loading({
+            lock: true,
+            text: 'Loading',
+            spinner: 'el-icon-loading',
+            background: 'rgba(0, 0, 0, 0.9)'
+          });
+          setTimeout(() => {
+            loading.close();
+          }, 2000);
         }
       }
     }

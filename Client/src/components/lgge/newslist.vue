@@ -33,16 +33,29 @@
           }
       },
       created(){
-        this.getnewslist()
+        this.getnewslist();
+        this.openFullScreen()
       },
       methods:{
+        // 获取新闻数据
         async getnewslist(){
           const res = await this.$axios.get('/getnewslist',this.model);
           // console.log(res);
           if(res.status === 200 ) {
             this.newslists = res.data
           }
-    }
+        },
+        openFullScreen() {
+          const loading = this.$loading({
+            lock: true,
+            text: 'Loading',
+            spinner: 'el-icon-loading',
+            background: 'rgba(0, 0, 0, 0.9)'
+          });
+          setTimeout(() => {
+            loading.close();
+          }, 2000);
+        }
       }
     }
 </script>

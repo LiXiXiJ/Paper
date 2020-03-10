@@ -1,7 +1,8 @@
 <template>
   <div class="search-container">
-    <input type="search" placeholder="请输入搜索内容" v-model="keywords">
-
+    <div class="input-aaa">
+      <input type="search" placeholder="请输入搜索内容" v-model="keywords">
+    </div>
   <div class="search-list">
     <router-link class="search-item" v-for="item in search(keywords)" :key="item.id" :to="'/home/shopinfo/'+item.id">
       <img :src="item.img_url">
@@ -32,7 +33,8 @@
           }
       },
       created(){
-          this.getSearchList()
+          this.getSearchList();
+          this.openFullScreen()
       },
       methods:{
         //  请求数据
@@ -52,6 +54,17 @@
             }
           });
           return newList
+        },
+        openFullScreen() {
+          const loading = this.$loading({
+            lock: true,
+            text: 'Loading',
+            spinner: 'el-icon-loading',
+            background: 'rgba(0, 0, 0, 0.9)'
+          });
+          setTimeout(() => {
+            loading.close();
+          }, 2000);
         }
       }
     }
@@ -125,5 +138,10 @@
   #hotsell{
     color: red;
     width: 55px;
+  }
+  .input-aaa{
+    width: 100%;
+    height: 40px;
+    background-color: rgb(38, 162, 255);
   }
 </style>

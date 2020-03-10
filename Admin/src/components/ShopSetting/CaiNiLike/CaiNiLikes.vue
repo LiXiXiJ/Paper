@@ -62,7 +62,13 @@
         RemoveCaiNiLike(i){
           this.CaiNiLikeShopList.some((item,index) => {
             if (i === index) {
-              this.CaiNiLikeShopList.splice(i,1)
+              // 界面删除
+              this.CaiNiLikeShopList.splice(i,1);
+              // console.log(item)
+              // 删除数据库商品
+              this.$axios.post('/deleteShop',item).then(res => {
+                //
+              })
             }
           })
         }
