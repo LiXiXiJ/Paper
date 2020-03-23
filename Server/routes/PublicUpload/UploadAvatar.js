@@ -1,5 +1,5 @@
 /**
- *  上传头像路由文件，数据库 user.js
+ *  上传图片文件，数据库
  * @type {createApplication}
  */
 
@@ -9,8 +9,6 @@ const express = require('express');
 const multer= require('multer');
 // 上传中间件，dest：目标地址  __dirname：当前文件所在文件夹，绝对地址,将来上传的图片二进制文件保存在此处
 const upload = multer({dest:__dirname + '/../../Public/uploadAvatars'});
-
-// const user = require('../../models/Users/user');
 
 const UploadAvatar = express.Router();
 

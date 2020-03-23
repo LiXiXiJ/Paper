@@ -2,7 +2,7 @@
     <div class="shoucangjia-container">
       <div class="type">
         <a href="javascript:;" :class="[baoBFlag ? 'YES' : 'NO']" @click="goBaby">宝贝</a>&nbsp;&nbsp;|&nbsp;&nbsp;
-        <a href="javascript:;" :class="[baoBFlag ? 'NO' : 'YES']" @click="goStore">商店</a>
+        <a href="javascript:;" :class="[baoBFlag ? 'NO' : 'YES']" @click="goStore">店铺</a>
       </div>
       <div v-if="baoBFlag">
         <div class="guanli">
@@ -63,12 +63,12 @@
       data(){
           return{
             guanLiFlag:true, // 宝贝管理
-            shouCFlag:false,
+            shouCFlag:false, // 取消收藏按钮
             ShouCJShopList:[],  // 收藏夹商品
 
-            storeFlag:true,  // 商店管理
-            guanzhuFlag:false,
             baoBFlag:true,  // 默认展示宝贝
+            storeFlag:true,  // 商店管理
+            guanzhuFlag:false, // 取消关注按钮
             guanZhuStoreList:[]  // 关注的商店
           }
       },

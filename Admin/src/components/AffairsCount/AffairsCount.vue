@@ -21,10 +21,11 @@
           border
           style="width: 100%">
           <el-table-column
-            label="日期(2020-01-01~)">
-            <template slot-scope="scope"  v-for="item in AffairsAllCountList">
-              <span>{{ item.time | dateFilter }}</span>
-            </template>
+            label="日期(2020-01-01~)"
+            prop="time">
+<!--            <template slot-scope="scope" v-for="item in AffairsAllCountList">-->
+<!--              <span>{{ item.time | dateFilter }}</span>-->
+<!--            </template>-->
           </el-table-column>
           <el-table-column
             prop="name"

@@ -9,5 +9,9 @@ export default {
   backLogin(state) {
     state.adminUser = {};
     localStorage.setItem('admin','{}')
+  },
+//  赞存待发货订单
+  saveWaitFaHuoOrder(state,row) {
+    state.waitFaHuoOrder = row;
   }
 }

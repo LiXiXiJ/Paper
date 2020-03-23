@@ -30,15 +30,16 @@
       data() {
         return {
           labelPosition: 'top',
-          name:'',
-          tel:'',
-          orderNum:'',
+          name:this.$store.state.waitFaHuoOrder.name,
+          tel:this.$store.state.waitFaHuoOrder.tel,
+          orderNum:this.$store.state.waitFaHuoOrder._id,
           faHuoAddress:'',
-          shouHuoAddress:'',
-          allPrice:''
+          shouHuoAddress:this.$store.state.waitFaHuoOrder.InfoAddress,
+          allPrice:this.$store.state.waitFaHuoOrder.allPrice
         };
       },
       methods:{
+        //  发货
         FaHuoSubmit(){
           const OBJ = {
             name:this.name,
@@ -51,7 +52,8 @@
           this.$axios.post('/postfahuosubmit',OBJ).then(res => {
             //
           });
-          this.name = this.num = this.tel = this.orderNum = this.faHuoAddress = this.shouHuoAddress = this.allPrice = ''
+          this.name = this.num = this.tel = this.orderNum = this.faHuoAddress = this.shouHuoAddress = this.allPrice = '';
+          this.$router.push('/order/yifahuo')
         }
       }
     }

@@ -56,12 +56,15 @@
           this.getWaitFaHuoOrder()
       },
       methods:{
-        GoFaHuo(){
-          this.$router.push('/order/fahuo')
+        GoFaHuo(row){
+          this.$router.push('/order/fahuo');
+          // console.log(row)
+          this.$store.commit('saveWaitFaHuoOrder',row)
         },
       //  获取待发货订单数据
         async getWaitFaHuoOrder(){
           const res = await this.$axios.get('/getwaitfahuoorder',this.model);
+          // console.log(res);
           if (res.status === 200) {
             this.waitFaHuoList = res.data
           }

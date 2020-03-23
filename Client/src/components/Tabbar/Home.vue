@@ -2,7 +2,7 @@
   <div class="Home-container">
 <!--    轮播图区域 -->
 <!--    auto 毫秒值 -->
-    <mt-swipe :auto="3000">
+    <mt-swipe :auto="5000">
       <mt-swipe-item v-for="item in lunbotuList" :key="item.id">
         <img :src="item.img_url">
       </mt-swipe-item>

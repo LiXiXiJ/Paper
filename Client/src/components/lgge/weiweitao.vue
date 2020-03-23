@@ -57,7 +57,7 @@
             // console.log(index)
             // console.log(array)
             if (i === index) {
-              if (array[i].flag) {
+              if (array[i].flag) {  // true 未点赞
                 array[i].zan++;
                 array[i].flag = false;
                 array[i].readNum++
@@ -104,7 +104,7 @@
         openFullScreen() {
           const loading = this.$loading({
             lock: true,
-            text: 'Loading',
+            text: '拼命加载中',
             spinner: 'el-icon-loading',
             background: 'rgba(0, 0, 0, 0.9)'
           });
