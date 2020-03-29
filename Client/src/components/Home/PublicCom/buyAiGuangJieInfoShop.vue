@@ -28,7 +28,7 @@
       </p>
       <p>
         <mt-button type="danger" size="small" @click="addToShopCar">加入购物车</mt-button>
-        <mt-button type="primary" size="small">立即购买</mt-button>
+        <mt-button type="primary" size="small" @click="addToShopCar">立即购买</mt-button>
       </p>
     </div>
     <div class="buy-comment">
@@ -43,6 +43,7 @@
 
 <script>
   import NumBox from './NumBox/YouHaoHuoShop-NumBox'
+  import { Toast } from 'mint-ui';
     export default {
         name: "buyAiGuangJieShop",
       components:{NumBox},
@@ -68,6 +69,9 @@
           },
         // 收藏商品
         guanZhu(){
+            if (localStorage.getItem('token') == '') {
+              return Toast('请先登录')
+            }
           const shouCJObj = {
             id:this.buyAiGuangJieInfoShop.id,
             title:this.buyAiGuangJieInfoShop.title,
@@ -80,7 +84,10 @@
         },
         // 去评论页面
         GoComment(){
-            this.$router.push('/home/aiGuangJieInfoShopComment/'+this.id)
+          if (localStorage.getItem('token') == '') {
+            return Toast('请先登录')
+          }
+          this.$router.push('/home/aiGuangJieInfoShopComment/'+this.id)
         },
         // 钩子函数实现半场动画
         beforeEnter(el){
@@ -118,6 +125,12 @@
         },
         // 加入购物车
         addToShopCar(){
+          if (localStorage.getItem('token') == '') {
+            return Toast('亲，要登录购买哦！')
+          }
+          if (this.numBoxCount === 0) {
+            return Toast('请选择要购买的数量')
+          }
           this.ballFlag = !this.ballFlag;
         //  拼接商品对象
           const aiGuangJieInfoShop = {

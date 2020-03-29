@@ -115,7 +115,7 @@
       </div>
       <div id="end">
         <p>END</p>
-        <p style="font-family:arial;">&copy; 2019-现在版权所有 </p>
+        <p style="font-family:arial;">&copy; 2019-NOW版权所有 </p>
       </div>
     </div>
   </div>
@@ -126,24 +126,25 @@
         name: "Home",
       data(){
           return{
-            lunbotuList:[], // 获取轮播图
-            lunbotu2List:[],
-            youhaohuoList:[],
-            aiguangjieList:[],
-            cainilikeList:[]
+            lunbotuList: [], // 获取轮播图
+            lunbotu2List: [],
+            youhaohuoList: [],
+            aiguangjieList: [],
+            cainilikeList: []
           }
       },
       created(){
-          this.getlunbo();
-          this.getLunBoTu2();
-          this.getYouHaoHuo();
-          this.getAiGuangJie();
+          this.getlunbo()
+          this.getLunBoTu2()
+          this.getYouHaoHuo()
+          this.getAiGuangJie()
           this.getCaiNiLike()
+        this.openFullScreen()
       },
       methods:{
         // 获取'轮播图'数据
           async getlunbo(){
-            const res = await this.$axios.get('/getlunbotu',this.model);
+            const res = await this.$axios.get('/getlunbotu', this.model);
             // console.log(res)
             if(res.status === 200 ){
               this.lunbotuList = res.data
@@ -151,7 +152,7 @@
           },
         // 获取'第二个轮播图'数据
         async getLunBoTu2(){
-            const res = await this.$axios.get('/getlunbotu2',this.model);
+            const res = await this.$axios.get('/getlunbotu2', this.model);
             // console.log(res)
           if(res.status === 200 ){
             this.lunbotu2List = res.data
@@ -159,7 +160,7 @@
         },
         // 获取'有好货'数据
         async getYouHaoHuo(){
-            const res = await this.$axios.get('/getyouhaohuo',this.model);
+            const res = await this.$axios.get('/getyouhaohuo', this.model);
             // console.log(res)
           if(res.status === 200 ){
             this.youhaohuoList = res.data
@@ -167,7 +168,7 @@
         },
         // 获取'爱逛街'数据
         async getAiGuangJie(){
-            const res = await this.$axios.get('/getaiguangjie',this.model);
+            const res = await this.$axios.get('/getaiguangjie', this.model);
             // console.log(res)
           if(res.status === 200 ){
             this.aiguangjieList = res.data
@@ -184,6 +185,17 @@
          // 跳转到'爱逛街'页面
         goInfo(){
             this.$router.push('/home/aiguangjie')
+        },
+        openFullScreen() {
+          const loading = this.$loading({
+            lock: true,
+            text: '拼命加载中',
+            spinner: 'el-icon-loading',
+            background: 'rgba(0, 0, 0, 0.9)'
+          });
+          setTimeout(() => {
+            loading.close();
+          }, 2000);
         }
       }
     }

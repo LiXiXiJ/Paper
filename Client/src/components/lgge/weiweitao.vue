@@ -37,6 +37,7 @@
 </template>
 
 <script>
+  import { Toast } from 'mint-ui';
     export default {
         name: "shop",
       data(){
@@ -53,6 +54,9 @@
         //   点赞功能
         zan(i){ // i 表示当前点击的那一项
           // console.log(i)
+          if (localStorage.getItem('token') == '') {
+            return Toast('请先登录')
+          }
           this.weiWeiTaoList.some((value, index, array) => {
             // console.log(index)
             // console.log(array)
@@ -67,19 +71,17 @@
               }
               // console.log(array[i])
               const Obj = array[i];
-                this.$axios.post('/updateweiweitaozan',Obj).then((res) => {
+                this.$axios.post('/updateweiweitaozan',Obj
+                  // {
+                  //   headers:{
+                  //     'Authorization': 'Bearer' + localStorage.getItem('token')
+                  //   }
+                  // }
+                ).then((res) => {
                   // 更新赞
                 })
             }
-            // if (this.flag) {
-            //   this.flag = false;
-            //   this.num++
-            // } else {
-            //   this.flag = true;
-            //   this.num--
-            // }
           })
-          // localStorage.setItem('weiWeiTaoZanNum',this.num)
         },
         //  获取数据
         async getWeiWeiTao(){
@@ -91,6 +93,9 @@
         },
         // 将关注的商店传到后台
         guanZhuStore(i){
+          if (localStorage.getItem('token') == '') {
+            return Toast('请先登录')
+          }
           // console.log(this.weiWeiTaoList[i].id)
           const storeObj = {
             id: this.weiWeiTaoList[i].id,

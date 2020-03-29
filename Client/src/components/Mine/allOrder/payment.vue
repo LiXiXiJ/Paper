@@ -46,7 +46,7 @@
       components:{MoreLike},
       data(){
           return{
-            paymentList:[]
+            paymentList: []
           }
       },
       created(){

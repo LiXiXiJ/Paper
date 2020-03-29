@@ -29,6 +29,7 @@
 </template>
 
 <script>
+  import { Toast } from 'mint-ui';
     export default {
         name: "shop",
       data(){
@@ -44,6 +45,9 @@
       methods:{
         dianZan(i){  // 实现点赞功能
           // console.log(i)
+          if (localStorage.getItem('token') == '') {
+            return Toast('请先登录')
+          }
           this.shaiYiShaiList.some((value, index, array) => {
             if (i === index) {
               if (array[i].flag) {
@@ -60,15 +64,6 @@
               })
             }
           })
-          // if (this.flag) {
-          //   this.flag = false;
-          //   this.num++
-          // } else {
-          //   this.flag = true;
-          //   this.num--
-          // }
-          // 赞 保存在本地
-          // localStorage.setItem('shaiYiShaiZanNum',this.num)
         },
         // 获取数据
         async getShaiYiShai(){

@@ -27,7 +27,7 @@
         <el-table-column
           prop="orderNum"
           label="订单编号"
-          width="180"
+          width="220"
           header-align="center">
         </el-table-column>
         <el-table-column

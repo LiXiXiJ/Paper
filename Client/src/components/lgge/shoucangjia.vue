@@ -58,6 +58,7 @@
 </template>
 
 <script>
+  import { Toast } from 'mint-ui';
     export default {
         name: "shoucangjia",
       data(){
@@ -77,19 +78,31 @@
         this.getGuanZhuStore()  // 商店
       },
       methods:{
+        goBaby(){  // 宝贝
+          this.baoBFlag = true
+        },
+        goStore(){  // 商店
+          this.baoBFlag = false
+        },
         /**
          *    宝贝
          */
         show(){
+          if (localStorage.getItem('token') == '') {
+            return Toast('请先登录')
+          }
             this.guanLiFlag = !this.guanLiFlag;
             this.shouCFlag = !this.shouCFlag
           },
         // 从数据库获取收藏夹商品
         async getShouCJShop(){
-            const res = await this.$axios.get('/getshoucangjia',this.model);
-            if (res.status === 200) {
-              this.ShouCJShopList = res.data
-            }
+          const res = await this.$axios.get('/getshoucangjia',this.model);
+          if (localStorage.getItem('token') == '') {
+            return this.ShouCJShopList = []
+          }
+          if (res.status === 200) {
+            this.ShouCJShopList = res.data
+          }
         },
         // 取消收藏商品
         removeShouCJShop(i){
@@ -108,19 +121,19 @@
          *   商店
          */
         storeshow(){
+          if (localStorage.getItem('token') == '') {
+            return Toast('请先登录')
+          }
             this.storeFlag = !this.storeFlag;
             this.guanzhuFlag = !this.guanzhuFlag
-        },
-        goBaby(){  // 宝贝
-            this.baoBFlag = true
-        },
-        goStore(){  // 商店
-            this.baoBFlag = false
         },
       //   从数据库获得收藏的商店
         async getGuanZhuStore(){
           const res = await this.$axios.get('/getguanzhustore',this.model);
             // console.log(res)
+          if (localStorage.getItem('token') == '') {
+            return this.guanZhuStoreList = []
+          }
           if (res.status === 200){
             this.guanZhuStoreList = res.data
           }

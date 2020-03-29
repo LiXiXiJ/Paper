@@ -36,6 +36,7 @@
         this.getPhotoImg()
       },
       methods:{
+        // 获取图片详情
         async getPhotoInfo(){
           const res = await this.$axios.get('/getphotoinfo/'+this.id,this.model); //await 不执行，返回一个promise对象
           // console.log(res)
@@ -43,6 +44,7 @@
             this.list = res.data
           }
         },
+        // 获取图片
         async getPhotoImg(){
           const res = await this.$axios.get('/getphotoimg/'+this.id,this.model);
           // console.log(res)

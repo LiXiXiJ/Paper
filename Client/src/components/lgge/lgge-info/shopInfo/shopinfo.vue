@@ -35,7 +35,7 @@
                           1.按钮属于shopinfo 组件，数字框属于numbox组件
                            2.涉及到父子组件的嵌套，无法直接在shopinfo页面中获得数量值
                             3.父子组件传值，父向子传递方法，子调用这个方法，同时把数据当作参数传递给这个方法-->
-              <mt-button type="primary" size="small">立即购买</mt-button>
+              <mt-button type="primary" size="small" @click="addToShopCar">立即购买</mt-button>
             </p>
           </div>
         </div>
@@ -61,6 +61,7 @@
 
 <script>
   import Numbox from './shopinfo-numbox'
+  import { Toast } from 'mint-ui';
 
     export default {
         name: "shopinfo",
@@ -79,6 +80,7 @@
           this.getShopInfoImg()
       },
       methods:{
+          // 得到商品详情
           async getShopInfo(){
             const res = await this.$axios.get('/getshopinfo/'+this.id,this.model);
             // console.log(res)
@@ -86,6 +88,7 @@
               this.shopInfo = res.data
             }
           },
+        // 得到商品图片
         async getShopInfoImg(){
             const res = await this.$axios.get('/getshopinfoimg/'+this.id,this.model);
             // console.log(res)
@@ -93,10 +96,15 @@
             this.shopInfoImg = res.data
            }
          },
-
-        addToShopCar(){ // 添加至购物车
+        // 添加至购物车
+        addToShopCar(){
+          if (localStorage.getItem('token') == '') {
+            return Toast('亲，登录购买哦！')
+          }
+          if (this.numBoxCount === 0) {
+            return Toast('请勾选要购买的数量')
+          }
             this.ballFlag = !this.ballFlag;
-
           // {id:商品id,count:要购买的数量,price:商品价格,selected:false}
           const selectShop = {  // 保存到store中 shopCar 数组中的信息对象
             id:this.id,
@@ -107,10 +115,11 @@
           // 调用 store 中的 mutations 来保存将商品加入购物车
           this.$store.commit("selectShopAddToShopCar",selectShop)
         },
-
-        goToShopDescription(){  // 编程式导航跳转至 shopdescription 组件
+        // 编程式导航跳转至 shopdescription 组件
+        goToShopDescription(){
           this.$router.push('/home/shopdescription/'+this.id)
         },
+        // 跳转到商品评论中
         goToShopComment(){
           this.$router.push('/home/shopcomment/'+this.id)
         },
@@ -145,11 +154,10 @@
         afterEnter(el){
             this.ballFlag = false
         },
-
+        // 当子组件把选中的数量传递给父组件时，把选中的值保存到 data 上
         getNumBoxCount(count){
-            // 当子组件把选中的数量传递给父组件时，把选中的值保存到 data 上
             this.numBoxCount = count
-          console.log('父组件拿到数据'+this.numBoxCount)
+            console.log('父组件拿到数据'+this.numBoxCount)
         }
        }
     }

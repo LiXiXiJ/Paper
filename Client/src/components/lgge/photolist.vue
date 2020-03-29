@@ -111,6 +111,7 @@
     bottom: 0;
     background-color: rgba(0,0,0,0.5);
     max-height: 100px;
+    text-align: left;
   }
   .info-title{
     color: white;

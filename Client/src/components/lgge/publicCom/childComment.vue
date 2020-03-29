@@ -35,18 +35,26 @@
           this.getCom()
       },
       methods:{
-          async getCom(){  // 获取评论数据
+        // 获取评论数据
+          async getCom(){
+            if (localStorage.getItem('token') == '') {
+              return this.childcomment = []
+            }
             const res = await this.$axios.get('/getchildcom/'+this.page_index,this.model);
             if( res.status === 200 ){
               this.childcomment = this.childcomment.concat(res.data)
             }
           },
-        async getMore(){ //加载更多
+        // 加载更多
+        async getMore(){
             this.page_index++;
             this.getCom()
         },
-        addComment(){  // 发表评论
-            // console.log('ok')
+        // 发表评论
+        addComment(){
+          if (localStorage.getItem('token') == '') {
+            return Toast('请先登录')
+          }
           // 检查是否为空
           if (this.comment.length === 0) {
             return Toast('评论内容不能为空')

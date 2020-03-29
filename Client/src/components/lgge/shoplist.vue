@@ -38,6 +38,7 @@
           this.LoadingChange()
       },
       methods: {
+          // 获取商品列表
           async getShopList(){
             const res = await this.$axios.get('/getshoplist/'+this.page_index,this.model);
             // console.log(res)

@@ -28,7 +28,7 @@
       </p>
       <p>
         <mt-button type="danger" size="small" @click="addToShopCar">加入购物车</mt-button>
-        <mt-button type="primary" size="small">立即购买</mt-button>
+        <mt-button type="primary" size="small" @click="addToShopCar">立即购买</mt-button>
       </p>
     </div>
     <div class="buy-comment">
@@ -43,6 +43,7 @@
 
 <script>
   import NumBox from './NumBox/YouHaoHuoShop-NumBox'
+  import { Toast } from 'mint-ui';
     export default {
         name: "buyYouHaoHuo",
       components:{NumBox},
@@ -68,6 +69,9 @@
           },
         // 收藏商品
         guanZhu(){
+          if (localStorage.getItem('token') == '') {
+            return Toast('请先登录')
+          }
             const shouCJObj = {
               id:this.youHaoHuo.id,
               title:this.youHaoHuo.title,
@@ -80,6 +84,9 @@
         },
         // 跳转到评论页面
         GoComment(){
+          if (localStorage.getItem('token') == '') {
+            return Toast('请先登录')
+          }
             this.$router.push('/home/youHaoHuoShopComment/'+this.id)
         },
         // 钩子函数实现半场动画
@@ -119,6 +126,12 @@
         },
       //  添加至购物车
         addToShopCar(){
+            if (localStorage.getItem('token') == '') {
+              return Toast('亲，要登录购买哦！')
+            }
+            if (this.numBoxCount === 0) {
+              return Toast('请勾选购买数量')
+            }
           this.ballFlag = !this.ballFlag;
 
         //  拼接出一个商品对象保存到store中、{id:商品id,count:要购买的数量,price:商品价格,selected:false}

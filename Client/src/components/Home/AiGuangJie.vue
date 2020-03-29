@@ -44,6 +44,7 @@
       },
       created(){
         this.getAiGuangJieInfo()
+        this.openFullScreen()
       },
       methods:{
           async getAiGuangJieInfo(){
@@ -52,7 +53,18 @@
             if (res.status === 200) {
               this.aiGuangJieInfoList = res.data
             }
-          }
+          },
+        openFullScreen() {
+          const loading = this.$loading({
+            lock: true,
+            text: '拼命加载中',
+            spinner: 'el-icon-loading',
+            background: 'rgba(0, 0, 0, 0.9)'
+          });
+          setTimeout(() => {
+            loading.close();
+          }, 2000);
+        }
       }
     }
 </script>

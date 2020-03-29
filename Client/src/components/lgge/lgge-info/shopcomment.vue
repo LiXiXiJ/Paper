@@ -34,6 +34,9 @@
       methods:{
         //  添加评论
         addComment(){
+          if (localStorage.getItem('token') == '') {
+            return Toast('请先登录')
+          }
           if (this.comment.length === 0) {
             return Toast('评论内容不能为空')
           }

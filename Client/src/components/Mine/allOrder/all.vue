@@ -18,13 +18,14 @@
 </template>
 
 <script>
+  // 退款、售后页面
   import MoreLike from '../../PubliComponents/MoreLike'
     export default {
         name: "all",
       components:{MoreLike},
       data(){
           return{
-
+            //
           }
       }
     }

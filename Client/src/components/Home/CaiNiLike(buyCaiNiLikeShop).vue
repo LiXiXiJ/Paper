@@ -29,7 +29,7 @@
       </p>
       <p>
         <mt-button type="danger" size="small" @click="addToShopCar">加入购物车</mt-button>
-        <mt-button type="primary" size="small">立即购买</mt-button>
+        <mt-button type="primary" size="small" @click="addToShopCar">立即购买</mt-button>
       </p>
     </div>
     <div class="buy-comment">
@@ -44,6 +44,7 @@
 
 <script>
   import NumBox from './PublicCom/NumBox/YouHaoHuoShop-NumBox'
+  import { Toast } from 'mint-ui';
     export default {
         name: "CaiNiLike",
       components:{NumBox},
@@ -69,6 +70,9 @@
           },
         // 收藏商品
         guanZhu(){
+            if (localStorage.getItem('token') == '') {
+              return Toast('请先登录')
+            }
           const shouCJObj = {
             id:this.BuyCaiNiLikeShop.id,
             title:this.BuyCaiNiLikeShop.title,
@@ -81,7 +85,10 @@
         },
         // 去评论页
         GoComment(){
-            this.$router.push('/home/caiNiLikeShopComment/'+this.id)
+          if (localStorage.getItem('token') == '') {
+            return Toast('请先登录')
+          }
+          this.$router.push('/home/caiNiLikeShopComment/'+this.id)
         },
         // 钩子函数实现半场动画
         beforeEnter(el){
@@ -120,6 +127,12 @@
         },
         // 加入购物车
         addToShopCar(){
+          if (localStorage.getItem('token') == '') {
+            return Toast('亲，要登录购买哦！')
+          }
+          if (this.numBoxCount === 0) {
+            return Toast('请勾选要购买的数量')
+          }
           this.ballFlag = !this.ballFlag;
           const caiNiLikeShop = {
             id:this.id,
