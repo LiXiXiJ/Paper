@@ -1,5 +1,5 @@
 /**
- *  上传图片文件，数据库
+ *  上传图片文件
  * @type {createApplication}
  */
 
